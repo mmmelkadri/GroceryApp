@@ -14,7 +14,14 @@
     <string name="enter_username">Enter Username</string>
     <string name="enter_password">Enter Password</string>
     <string name="stores">Stores</string>
-    
+    <string name="button_pending_orders">Pending Orders</string>
+    <string name="button_new_item">Create New Item</string>
+    <string name="checkbox_mark_complete">Mark Order as Complete</string>
+    <string name="button_checkout">Checkout</string>
+    <string name="table_item">Item</string>
+    <string name="table_quantity">Quantity</string>
+    <string name="button_orders">Orders</string>
+
     <string-array name="User_Dropdown">
         <item>Owner</item>
         <item>Customer</item>
