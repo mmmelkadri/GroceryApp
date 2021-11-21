@@ -4,11 +4,20 @@
     <string name="orders">Orders</string>
     <string name="checkout">Checkout</string>
     <string name="add_to_cart">Add to Cart</string>
+    <string name="Username">Username</string>
+    <string name="Password">Password</string>
+    <string name="login_as_owner_button">Login as Owner</string>
+    <string name="login_as_customer_button">Login as Customer</string>
+    <string name="Login">Login</string>
+    <string name="signup">Sign up</string>
+    <string name="role">Role</string>
+    <string name="enter_username">Enter Username</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="stores">Stores</string>
+    
+    <string-array name="User_Dropdown">
+        <item>Owner</item>
+        <item>Customer</item>
+    </string-array>
 
-    <string name="new_item_title">New Item</string>
-    <string name="new_name">New Item Name</string>
-    <string name="new_brand">Brand</string>
-    <string name="price">Price</string>
-    <string name="description">Description</string>
-    <string name="add_item">Add Item</string>
 </resources>
