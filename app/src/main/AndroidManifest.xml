@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GroceryApp">
         <activity
+            android:name=".OwnerOrders"
+            android:exported="false" />
+        <activity
+            android:name=".CreateNewItem"
+            android:exported="false" />
+        <activity
             android:name=".CheckoutActivity"
             android:exported="false" />
         <activity
