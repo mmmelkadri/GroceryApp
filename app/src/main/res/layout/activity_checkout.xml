@@ -23,13 +23,12 @@
 
     <ScrollView
         android:id="@+id/orderList"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="360dp"
+        android:layout_height="507dp"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
-        android:layout_marginBottom="24dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.333"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/checkout"
         tools:ignore="SpeakableTextPresentCheck">
@@ -39,4 +38,22 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" />
     </ScrollView>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/checkoutButton"
+        android:layout_width="361dp"
+        android:layout_height="69dp"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="48dp"
+        android:backgroundTint="#38761D"
+        android:fontFamily="@font/open_sans_bold"
+        android:text="@string/checkoutButton"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/orderList" />
 </androidx.constraintlayout.widget.ConstraintLayout>
