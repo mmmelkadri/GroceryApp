@@ -20,7 +20,14 @@ public class MainActivity extends AppCompatActivity {
 
         myRef.setValue("Hello, World!");
         // Test complete
+
         // test test
+
+        Writer n_w = new Writer();
+        String email = "tengo_hambre@email.com";
+        String username = "hambriento";
+        String UserId = "105";
+        n_w.writeNewUser(UserId, username, email);
     }
 
 
