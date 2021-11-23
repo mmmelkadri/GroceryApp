@@ -9,7 +9,7 @@ public class Writer {
         mDatabase = FirebaseDatabase.getInstance().getReference();
     }
     public void writeNewUser(String UserId, String name, String email){
-        Costumer costumer = new Costumer(name, email);
-        mDatabase.child("users").child(UserId).setValue(costumer);
+        Customer customer = new Customer(name, email);
+        mDatabase.child("users").child(UserId).setValue(customer);
     }
 }

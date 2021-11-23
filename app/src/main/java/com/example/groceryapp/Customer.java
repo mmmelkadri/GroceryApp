@@ -1,13 +1,13 @@
 package com.example.groceryapp;
 
-public class Costumer {
+public class Customer {
     public String username;
     public String email;
 
-    public Costumer(){
+    public Customer(){
     }
 
-    public Costumer(String username, String email){
+    public Customer(String username, String email){
         this.username = username;
         this.email = email;
     }
