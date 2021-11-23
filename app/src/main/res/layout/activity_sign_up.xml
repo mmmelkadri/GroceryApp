@@ -12,13 +12,14 @@
         android:id="@+id/Signup_Heading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
         android:fontFamily="@font/open_sans_bold"
         android:text="@string/signup"
         android:textColor="@color/App_green"
         android:textSize="48sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/Signup_Icon"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.54"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -26,8 +27,8 @@
         android:id="@+id/Signup_Icon"
         android:layout_width="150dp"
         android:layout_height="150dp"
+        android:layout_marginTop="30dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Signup_Heading"
         app:srcCompat="@drawable/ic_sign_up" />
@@ -103,7 +104,7 @@
     <Spinner
         android:id="@+id/Signup_UserDropdown"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_marginStart="60dp"
         android:entries="@array/User_Dropdown"
         app:layout_constraintBottom_toTopOf="@+id/Signup_Username_EditText"
@@ -112,5 +113,22 @@
         app:layout_constraintStart_toEndOf="@+id/Signup_Role_TextView"
         app:layout_constraintTop_toBottomOf="@+id/Signup_Icon"
         app:layout_constraintVertical_bias="0.682" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/Signup_Signup_Button"
+        android:layout_width="215dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="20dp"
+        android:backgroundTint="@color/App_green"
+        android:fontFamily="@font/open_sans_bold"
+        android:text="@string/login_as_owner_button"
+        android:typeface="sans"
+        app:cornerRadius="50dp"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Signup_Password_EditText"
+        app:layout_constraintVertical_bias="0.225" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

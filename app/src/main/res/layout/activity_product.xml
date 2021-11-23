@@ -69,6 +69,7 @@
         android:text="@string/add_to_cart"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
+        app:cornerRadius="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/numItems"
