@@ -13,6 +13,7 @@
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="64dp"
         android:text="@string/checkbox_mark_complete"
+        android:onClick="markComplete"
         android:textColor="#38761d"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -21,7 +22,7 @@
         android:id="@+id/textViewOrderID"
         android:layout_width="103dp"
         android:layout_height="50dp"
-        android:layout_marginTop="81dp"
+        android:layout_marginTop="40dp"
         android:text="TextView"
         android:textColor="#38761d"
         android:textSize="25sp"
@@ -29,42 +30,41 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ScrollView
-        android:layout_width="409dp"
-        android:layout_height="486dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginEnd="1dp"
+    <ListView
+        android:id="@+id/orderItemsListView"
+        android:layout_width="411dp"
+        android:layout_height="438dp"
+        android:layout_marginTop="14dp"
         android:layout_marginBottom="1dp"
         app:layout_constraintBottom_toTopOf="@+id/checkBoxOrderComplete"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewOrderID">
+        app:layout_constraintTop_toBottomOf="@+id/quantityTextView" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal" >
+    <TextView
+        android:id="@+id/itemTextView"
+        android:layout_width="83dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="49dp"
+        android:layout_marginTop="126dp"
+        android:gravity="center"
+        android:text="@string/table_item"
+        android:textColor="#38761d"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:layout_width="205dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:textColor="#38761d"
-                    android:text="@string/table_item" />
-
-                <TextView
-                    android:layout_width="210dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:textColor="#38761d"
-                    android:text="@string/table_quantity" />
-            </LinearLayout>
-        </LinearLayout>
-    </ScrollView>
+    <TextView
+        android:id="@+id/quantityTextView"
+        android:layout_width="83dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="126dp"
+        android:layout_marginEnd="49dp"
+        android:gravity="center"
+        android:text="@string/table_quantity"
+        android:textColor="#38761d"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
