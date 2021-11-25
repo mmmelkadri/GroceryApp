@@ -8,4 +8,10 @@ public class Order {
     String ownerID;
     ArrayList<Object> products;
 
+    public Order(String customerId, String ownerID){
+        this.customerId = customerId;
+        this.ownerID = ownerID;
+    }
+    //public void add_to_order()
+
 }
