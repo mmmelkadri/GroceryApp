@@ -9,39 +9,34 @@
 
     <TextView
         android:id="@+id/itemName"
-        android:layout_width="334dp"
+        android:layout_width="333dp"
         android:layout_height="46dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="192dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginTop="4dp"
         android:fontFamily="@font/open_sans_bold"
         android:text="TextView"
         android:textColor="#38761d"
         android:textSize="34sp"
-        app:layout_constraintBottom_toTopOf="@+id/itemDescription"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.519"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/itemBrand" />
+
+    <TextView
+        android:id="@+id/itemBrand"
+        android:layout_width="333dp"
+        android:layout_height="26dp"
+        android:layout_marginTop="272dp"
+        android:fontFamily="@font/open_sans"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.525"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/itemDescription"
-        android:layout_width="338dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="64dp"
-        android:layout_marginEnd="64dp"
-        android:layout_marginBottom="201dp"
-        android:fontFamily="@font/open_sans"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/itemName" />
-
     <EditText
         android:id="@+id/numItems"
-        android:layout_width="98dp"
-        android:layout_height="62dp"
+        android:layout_width="75dp"
+        android:layout_height="59dp"
         android:layout_marginStart="64dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="24dp"
@@ -54,14 +49,15 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/addCart"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/itemDescription" />
+        app:layout_constraintTop_toBottomOf="@+id/itemName"
+        app:layout_constraintVertical_bias="0.0" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/addCart"
         android:layout_width="178dp"
         android:layout_height="61dp"
         android:layout_marginStart="9dp"
-        android:layout_marginTop="54dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="64dp"
         android:layout_marginBottom="64dp"
         android:backgroundTint="#38761D"
@@ -74,7 +70,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/numItems"
-        app:layout_constraintTop_toBottomOf="@+id/itemDescription"
+        app:layout_constraintTop_toBottomOf="@+id/itemName"
         app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
