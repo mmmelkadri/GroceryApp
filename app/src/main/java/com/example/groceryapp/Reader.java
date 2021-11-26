@@ -6,16 +6,8 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class Reader {
     DatabaseReference mDatabase;
-    private static Reader reader;
-
-    private Reader() {
+    public Reader() {
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-    }
-
-    public static Reader getInstance() {
-        if(reader == null)
-            reader = new Reader();
-        return reader;
     }
 
     public String readValue(String... args) {
