@@ -6,4 +6,6 @@ public class Customer extends User{
         this.password = password;
         this.display_name = display_name;
     }
+
+
 }
