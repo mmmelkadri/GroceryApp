@@ -10,12 +10,14 @@ public class getInformation {
     private static final String orderKey = "order";
     private static final String productKey = "products";
     private static final String stateKey = "state";
-    private static final String ownerKey = "owner";
     private static final String quantity = "quantity";
     private static final String productIDKey = "product_id";
     // public to be used in Owner getOrders and Customer getOrders
     public static final String customerIDKey = "customer_id";
     public static final String ownerIDKey = "owner_id";
+    public static final String ownerKey = "owner";
+    public static final String customerKey = "customer";
+
 
     private getInformation() { }
 
@@ -62,10 +64,10 @@ public class getInformation {
         return orderInformation;
     }
 
-    public ArrayList<Object> getAllStores() {
-        // Returns {OwnerID1, OwnerID2 ... }
+    public ArrayList<Object> getAllUsers(String owner_or_customerKey) {
+        // Returns {UserID1, UserID2 ... }, owner/customer user depending on key
         ArrayList<Object> storeInformation = new ArrayList<Object>();
-        DataSnapshot stores = Reader.getInstance().readSnapshot(ownerKey);
+        DataSnapshot stores = Reader.getInstance().readSnapshot(owner_or_customerKey);
 
         if (stores == null)
             return null;
