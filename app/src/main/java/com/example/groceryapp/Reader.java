@@ -6,16 +6,9 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class Reader {
     DatabaseReference mDatabase;
-    private static Reader read;
 
-    private Reader() {
+    public Reader() {
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-    }
-
-    public static Reader getInstance() {
-        if(read == null)
-            read = new Reader();
-        return read;
     }
 
     public String readValue(String... args) {
@@ -30,7 +23,7 @@ public class Reader {
             temp = temp.child(arg);
         }
 
-        return (String) temp.getValue();
+        return (String) temp.getValue(String.class);
     }
 
     public DataSnapshot readSnapshot(String... args) {
