@@ -19,8 +19,7 @@ public class Order  {
     //public void add_to_order()
     public void change_order_status() {
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-        Reader reader = new Reader();
-        String status = reader.readValue("users", ownerID, "orders", orderId, "state");
+        String status = Reader.getInstance().readValue("users", ownerID, "orders", orderId, "state");
         if (status.equals("incomplete")) {
             mDatabase.child("users").child(ownerID).child("orders").child(orderId).child("state").setValue("complete");
             mDatabase.child("users").child(customerId).child("orders").child(orderId).child("state").setValue("complete");
