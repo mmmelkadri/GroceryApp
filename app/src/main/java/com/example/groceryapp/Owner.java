@@ -21,6 +21,6 @@ public class Owner extends User{
     }
 
     public ArrayList<Object> getOrders(String user_ID) {
-        return new getInformation().getOrders(user_ID, getInformation.ownerIDKey);
+        return getInformation.getInstance().getOrders(user_ID, getInformation.ownerIDKey);
     }
 }

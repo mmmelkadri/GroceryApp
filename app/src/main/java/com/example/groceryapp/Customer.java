@@ -19,6 +19,6 @@ public class Customer extends User{
         mDatabase.child("Customers").child(user_ID).child("Password").setValue(this.password);
     }
     public ArrayList<Object> getOrders(String user_ID) {
-        return new getInformation().getOrders(user_ID, getInformation.customerIDKey);
+        return getInformation.getInstance().getOrders(user_ID, getInformation.customerIDKey);
     }
 }

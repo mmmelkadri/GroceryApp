@@ -5,6 +5,7 @@ import com.google.firebase.database.DataSnapshot;
 import java.util.ArrayList;
 
 public class getInformation {
+    private static getInformation info;
     // keywords
     private static final String orderKey = "order";
     private static final String productKey = "products";
@@ -18,11 +19,17 @@ public class getInformation {
     public static final String customerKey = "customer";
 
 
-    public getInformation() { }
+    private getInformation() { }
+
+    public static getInformation getInstance() {
+        if (info == null)
+            info = new getInformation();
+        return info;
+    }
 
     public String getStoreName(String owner_ID) {
         // Returns store name with owner_ID as username
-        DataSnapshot stores = new Reader().readSnapshot(ownerKey);
+        DataSnapshot stores = Reader.getInstance().readSnapshot(ownerKey);
 
         if (stores == null)
             return null;
@@ -48,7 +55,7 @@ public class getInformation {
     public ArrayList<Object> getProductInformation(String order_ID) {
         // Returns {{productID1, quantity}, {productID2, quantity} ...}
         ArrayList<Object> productInformation = new ArrayList<Object>();
-        DataSnapshot products = new Reader().readSnapshot(orderKey, order_ID).child(productKey);
+        DataSnapshot products = Reader.getInstance().readSnapshot(orderKey, order_ID).child(productKey);
 
         if (products == null)
             return null;
@@ -67,7 +74,7 @@ public class getInformation {
     public ArrayList<Object> getOrderInformation(String order_ID) {
         // Returns {CustomerID, OwnerID, {{productID1, quantity}, {productID2, quantity} ... }, state}
         ArrayList<Object> orderInformation = new ArrayList<Object>();
-        DataSnapshot order = new Reader().readSnapshot(orderKey, order_ID);
+        DataSnapshot order = Reader.getInstance().readSnapshot(orderKey, order_ID);
 
         if (order == null)
             return null;
@@ -85,7 +92,7 @@ public class getInformation {
     public ArrayList<Object> getAllUsers(String owner_or_customerKey) {
         // Returns {UserID1, UserID2 ... }, owner/customer user depending on key
         ArrayList<Object> userInformation = new ArrayList<Object>();
-        DataSnapshot users = new Reader().readSnapshot(owner_or_customerKey);
+        DataSnapshot users = Reader.getInstance().readSnapshot(owner_or_customerKey);
 
         if (users == null)
             return null;
@@ -100,7 +107,7 @@ public class getInformation {
     public ArrayList<Object> getOrders(String user_ID, String owner_or_customerIDKey) {
         // Returns {{OrderID1, state}, ...} if order owner/customer (depending on input) has same user_ID
         ArrayList<Object> storeInformation = new ArrayList<Object>();
-        DataSnapshot orders = new Reader().readSnapshot(orderKey);
+        DataSnapshot orders = Reader.getInstance().readSnapshot(orderKey);
 
         if (orders == null)
             return null;

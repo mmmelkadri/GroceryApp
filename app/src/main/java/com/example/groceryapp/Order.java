@@ -37,7 +37,7 @@ public class Order  {
         //Access Order counter, add one, assign to orderId, WriteToDatabase()
         int i = 0;
         while (true) {
-            ArrayList<Object> list = getInformation.info.getOrderInformation(Integer.toString(Integer.valueOf(i)));
+            ArrayList<Object> list = getInformation.getInstance().getOrderInformation(Integer.toString(Integer.valueOf(i)));
             if(list == null) {
                 break;
             }
