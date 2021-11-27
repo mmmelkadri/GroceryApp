@@ -5,10 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+// Mohamad El Kadri
 public class ProductActivity extends AppCompatActivity {
 
     @Override
@@ -29,9 +31,14 @@ public class ProductActivity extends AppCompatActivity {
 
         if (!matcher.matches()) {
             //display message stating problem
+            CharSequence error = "Please enter a valid amount.";
+            Toast toast = Toast.makeText(getApplicationContext(), error, Toast.LENGTH_SHORT);
         } else {
             //add to users cart
+
+
             //return to store page
+            finish();
         }
     }
 }

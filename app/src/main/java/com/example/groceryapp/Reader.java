@@ -5,7 +5,12 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+// Mohamad El Kadri
 public class Reader {
+    /***************************
+     * Generic FireBase reader *
+     * ************************/
+
     Task<DataSnapshot> databaseSnapshot;
     public static Reader read;
 
@@ -21,7 +26,7 @@ public class Reader {
     }
 
     public String readValue(String... args) {
-        // Pass in keys in order of access from mDatabase root to get value
+        // Pass in keys path from mDatabase root to get value
         DataSnapshot temp = databaseSnapshot.getResult();
 
         for (String arg : args) {
@@ -36,11 +41,11 @@ public class Reader {
     }
 
     public DataSnapshot readSnapshot(String... args) {
-        // Pass in keys in order of access from mDatabase root to get snapshot at final key
+        // Pass in keys path from mDatabase root to get snapshot at final key
         DataSnapshot temp = databaseSnapshot.getResult();
 
         for (String arg : args) {
-            // if the child does not exist, return empty string
+            // if the child does not exist, return null
             if (temp.child(arg) == null)
                 return null;
 
