@@ -8,7 +8,7 @@ import static org.junit.Assert.*;
 public class ReadingUnitTest {
     @Test
     public void readValueTest1() {
-        String actual = new Reader().readValue("test", "Catherine", "username");
+        String actual = Reader.getInstance().readValue("test", "Catherine", "username");
 
         assertEquals(actual, "UCath");
     }

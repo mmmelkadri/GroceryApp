@@ -10,12 +10,14 @@ public class getInformation {
     private static final String orderKey = "order";
     private static final String productKey = "products";
     private static final String stateKey = "state";
-    private static final String ownerKey = "owner";
     private static final String quantity = "quantity";
     private static final String productIDKey = "product_id";
     // public to be used in Owner getOrders and Customer getOrders
     public static final String customerIDKey = "customer_id";
     public static final String ownerIDKey = "owner_id";
+    public static final String ownerKey = "owner";
+    public static final String customerKey = "customer";
+
 
     private getInformation() { }
 
@@ -28,7 +30,7 @@ public class getInformation {
     public ArrayList<Object> getProductInformation(String order_ID) {
         // Returns {{productID1, quantity}, {productID2, quantity} ...}
         ArrayList<Object> productInformation = new ArrayList<Object>();
-        DataSnapshot products = new Reader().readSnapshot(orderKey, order_ID).child(productKey);
+        DataSnapshot products = Reader.getInstance().readSnapshot(orderKey, order_ID).child(productKey);
 
         if (products == null)
             return null;
@@ -45,9 +47,9 @@ public class getInformation {
     }
 
     public ArrayList<Object> getOrderInformation(String order_ID) {
-        // Returns {CustomerID, OwnerID, {{productID1, quantity}, {productID2, quantity} ... }}
+        // Returns {CustomerID, OwnerID, {{productID1, quantity}, {productID2, quantity} ... }, state}
         ArrayList<Object> orderInformation = new ArrayList<Object>();
-        DataSnapshot order = new Reader().readSnapshot(orderKey, order_ID);
+        DataSnapshot order = Reader.getInstance().readSnapshot(orderKey, order_ID);
 
         if (order == null)
             return null;
@@ -57,14 +59,15 @@ public class getInformation {
         orderInformation.add(order.child(ownerIDKey).getValue());
 
         orderInformation.add(getProductInformation(order_ID));
+        orderInformation.add(order.child(stateKey).getValue());
 
         return orderInformation;
     }
 
-    public ArrayList<Object> getAllStores() {
-        // Returns {OwnerID1, OwnerID2 ... }
+    public ArrayList<Object> getAllUsers(String owner_or_customerKey) {
+        // Returns {UserID1, UserID2 ... }, owner/customer user depending on key
         ArrayList<Object> storeInformation = new ArrayList<Object>();
-        DataSnapshot stores = new Reader().readSnapshot(ownerKey);
+        DataSnapshot stores = Reader.getInstance().readSnapshot(owner_or_customerKey);
 
         if (stores == null)
             return null;
@@ -79,7 +82,7 @@ public class getInformation {
     public ArrayList<Object> getOrders(String user_ID, String owner_or_customerIDKey) {
         // Returns {{OrderID1, state}, ...} if order owner/customer (depending on input) has same user_ID
         ArrayList<Object> storeInformation = new ArrayList<Object>();
-        DataSnapshot orders = new Reader().readSnapshot(orderKey);
+        DataSnapshot orders = Reader.getInstance().readSnapshot(orderKey);
 
         if (orders == null)
             return null;
