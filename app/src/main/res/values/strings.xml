@@ -28,7 +28,7 @@
     <string name="new_brand">New Brand</string>
     <string name="new_name">New Name</string>
     <string name="new_item_title">New Item</string>
-    <string name="public_name">Public Name</string>
+    <string name="public_name">Display Name</string>
     <string-array name="User_Dropdown">
         <item>Owner</item>
         <item>Customer</item>
