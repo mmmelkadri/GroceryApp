@@ -34,7 +34,6 @@ public class LoginActivity extends AppCompatActivity {
             if (spinner_s.equals("Owner")) {
                 Owner owner = new Owner(username_s, password_s, public_s);
                 owner.writeToDatabase();
-                Toast.makeText(LoginActivity.this,"done", Toast.LENGTH_SHORT).show();
             }
             else {
                 Customer customer = new Customer(username_s, password_s, public_s);
@@ -42,7 +41,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         }
         catch(Exception e){
-            Toast.makeText(LoginActivity.this, e.toString(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
     }
 }

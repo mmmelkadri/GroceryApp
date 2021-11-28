@@ -30,8 +30,8 @@ public class getInformation {
     public static final String productIDKey = "product_id";
     public static final String customerIDKey = "customer_id";
     public static final String ownerIDKey = "owner_id";
-    public static final String ownerKey = "owner";
-    public static final String customerKey = "customer";
+    public static final String ownerKey = "Owners";
+    public static final String customerKey = "Customers";
 
 
     private getInformation() { }
