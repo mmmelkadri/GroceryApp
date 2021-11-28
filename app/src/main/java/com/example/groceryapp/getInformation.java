@@ -21,10 +21,9 @@ public class getInformation {
 
     private static final String productListKey = "product_list";
 
-    private static final String itemIDKey = "0";
-    private static final String itemNameKey = "1";
-    private static final String itemBrandKey = "2";
-    private static final String itemPriceKey = "3";
+    private static final String itemNameKey = "product name";
+    private static final String itemBrandKey = "brand";
+    private static final String itemPriceKey = "price";
 
     // public to be used in Owner getOrders and Customer getOrders
     public static final String productIDKey = "product_id";
@@ -67,7 +66,7 @@ public class getInformation {
 
         for (DataSnapshot product : products.getChildren()) {
             // if we've found the item
-            if (product.child(itemIDKey).getValue(String.class) == product_ID) {
+            if (product.getKey() == product_ID) {
                 item.add(product.child(itemNameKey).getValue(String.class));
                 item.add(product.child(itemBrandKey).getValue(String.class));
                 item.add(product.child(itemPriceKey).getValue(String.class));
