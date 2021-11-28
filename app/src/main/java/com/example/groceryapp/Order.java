@@ -94,19 +94,6 @@ public class Order  {
         for(ArrayList<String> i: products_and_quantity){
             mDatabase.child("orders").child(orderId).child("products").child(Integer.toString(j))
                     .child("product_id").setValue(i.get(PRODUCT_ID));
-
-            mDatabase.child("orders").child(orderId).child("products").child(Integer.toString(j))
-                    .child("product_name").setValue(i.get(PRODUCT_NAME));
-
-            mDatabase.child("orders").child(orderId).child("products").child(Integer.toString(j))
-                    .child("brand").setValue(i.get(BRAND));
-
-            mDatabase.child("orders").child(orderId).child("products").child(Integer.toString(j))
-                    .child("price").setValue(i.get(PRICE));
-
-            mDatabase.child("orders").child(orderId).child("products").child(Integer.toString(j))
-                    .child("quantity").setValue(i.get(QUANTITY));
-
             j++;
         }
 
