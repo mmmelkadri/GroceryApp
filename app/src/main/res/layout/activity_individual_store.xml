@@ -49,15 +49,15 @@
         android:id="@+id/buttonCheckout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
+        android:layout_marginStart="138dp"
         android:layout_marginBottom="16dp"
-        android:text="@string/button_checkout"
-        android:onClick="openCheckout"
-        android:textColor="@android:color/white"
         android:background="@drawable/round_button"
+        android:onClick="openCheckout"
+        android:text="@string/button_checkout"
+        android:textColor="@android:color/white"
         app:backgroundTint="#38761d"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/buttonOrders" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textViewStoreName"
@@ -72,16 +72,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/buttonOrders"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:text="@string/button_orders"
-        android:onClick="openOrders"
-        android:textColor="@android:color/white"
-        android:background="@drawable/round_button"
-        app:backgroundTint="#38761d"
-        app:layout_constraintBaseline_toBaselineOf="@+id/buttonCheckout"
-        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -33,23 +33,28 @@ public class Order  {
     }
 
     //Should this change order_status in database or in order?
-    public void change_order_status() {
+    public void change_order_status(String orderid) {
+        if (!status) {
+            status = true;
+        }
+        else {
+            status = false;
+        }
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-        String status = Reader.getInstance().readValue("users", ownerID, "orders", orderId, "state");
+        String status = Reader.getInstance().readValue("users", ownerID, "orders", orderid, "state");
         if (status.equals("incomplete")) {
-            mDatabase.child("users").child(ownerID).child("orders").child(orderId).child("state").setValue("complete");
-            mDatabase.child("users").child(customerId).child("orders").child(orderId).child("state").setValue("complete");
-            mDatabase.child("orders").child(orderId).child("state").setValue("complete");
+            mDatabase.child("users").child(ownerID).child("orders").child(orderid).child("state").setValue("complete");
+            mDatabase.child("users").child(customerId).child("orders").child(orderid).child("state").setValue("complete");
+            mDatabase.child("orders").child(orderid).child("state").setValue("complete");
         }
         else if (status.equals("complete")) {
-            mDatabase.child("users").child(ownerID).child("orders").child(orderId).child("state").setValue("incomplete");
-            mDatabase.child("users").child(customerId).child("orders").child(orderId).child("state").setValue("incomplete");
-            mDatabase.child("orders").child(orderId).child("state").setValue("incomplete");
+            mDatabase.child("users").child(ownerID).child("orders").child(orderid).child("state").setValue("incomplete");
+            mDatabase.child("users").child(customerId).child("orders").child(orderid).child("state").setValue("incomplete");
+            mDatabase.child("orders").child(orderid).child("state").setValue("incomplete");
         }
     }
 
-    public void checkoutOrder(){
-        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+    public void checkoutOrder(String orderid){
         //Access Order counter, add one, assign to orderId, call WriteToDatabase()
         int i = 0;
         while (true) {
@@ -60,19 +65,20 @@ public class Order  {
             i++;
         }
         orderId = Integer.toString(Integer.valueOf(i));
+        write_to_database();
 
         /*Shouldn't this be a part of write_to_database()?
-        mDatabase.child("users").child(ownerID).child("orders").child(orderId).child("state").setValue("incomplete");
-        mDatabase.child("users").child(ownerID).child("orders").child(orderId).child("customerId").setValue(customerId);
-        mDatabase.child("users").child(ownerID).child("orders").child(orderId).child("ownerId").setValue(ownerID);
+        mDatabase.child("users").child(ownerID).child("orders").child(orderid).child("state").setValue("incomplete");
+        mDatabase.child("users").child(ownerID).child("orders").child(orderid).child("customerId").setValue(customerId);
+        mDatabase.child("users").child(ownerID).child("orders").child(orderid).child("ownerId").setValue(ownerID);
 
-        mDatabase.child("users").child(customerId).child("orders").child(orderId).child("state").setValue("incomplete");
-        mDatabase.child("users").child(customerId).child("orders").child(orderId).child("customerId").setValue(customerId);
-        mDatabase.child("users").child(customerId).child("orders").child(orderId).child("ownerId").setValue(ownerID);
+        mDatabase.child("users").child(customerId).child("orders").child(orderid).child("state").setValue("incomplete");
+        mDatabase.child("users").child(customerId).child("orders").child(orderid).child("customerId").setValue(customerId);
+        mDatabase.child("users").child(customerId).child("orders").child(orderid).child("ownerId").setValue(ownerID);
 
-        mDatabase.child("orders").child(orderId).child("state").setValue("incomplete");
-        mDatabase.child("orders").child(orderId).child("customerId").setValue(customerId);
-        mDatabase.child("orders").child(orderId).child("ownerId").setValue(ownerID);
+        mDatabase.child("orders").child(orderid).child("state").setValue("incomplete");
+        mDatabase.child("orders").child(orderid).child("customerId").setValue(customerId);
+        mDatabase.child("orders").child(orderid).child("ownerId").setValue(ownerID);
         */
     }
 
