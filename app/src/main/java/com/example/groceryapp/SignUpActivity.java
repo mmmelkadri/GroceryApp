@@ -17,9 +17,6 @@ public class SignUpActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up);
     }
 
-
-
-
     public void SignUpSignUpButton (View view){
         EditText username_edit =  (EditText) findViewById(R.id.Signup_Username_EditText);
         String username_s = username_edit.getText().toString();
