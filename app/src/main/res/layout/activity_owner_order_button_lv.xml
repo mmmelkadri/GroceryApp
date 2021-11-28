@@ -15,8 +15,8 @@
 
     <TextView
         android:id="@+id/textViewState"
-        android:layout_width="wrap_content"
-        android:layout_height="100dp"
+        android:layout_width="190dp"
+        android:layout_height="103dp"
         android:layout_weight="1"
         android:background="@drawable/ic_login"
         android:backgroundTint="#C62E2E"
