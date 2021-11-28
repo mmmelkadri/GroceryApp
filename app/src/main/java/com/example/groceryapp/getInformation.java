@@ -1,18 +1,33 @@
 package com.example.groceryapp;
 
+import android.provider.ContactsContract;
+
 import com.google.firebase.database.DataSnapshot;
 
 import java.util.ArrayList;
 
+// Mohamad El Kadri
 public class getInformation {
+    /********************************************************
+     * Class for use in cleanly accessing data using Reader *
+     * *****************************************************/
+
     private static getInformation info;
     // keywords
     private static final String orderKey = "order";
     private static final String productKey = "products";
     private static final String stateKey = "state";
     private static final String quantity = "quantity";
-    private static final String productIDKey = "product_id";
+
+    private static final String productListKey = "product_list";
+
+    private static final String itemIDKey = "0";
+    private static final String itemNameKey = "1";
+    private static final String itemBrandKey = "2";
+    private static final String itemPriceKey = "3";
+
     // public to be used in Owner getOrders and Customer getOrders
+    public static final String productIDKey = "product_id";
     public static final String customerIDKey = "customer_id";
     public static final String ownerIDKey = "owner_id";
     public static final String ownerKey = "owner";
@@ -44,18 +59,47 @@ public class getInformation {
         return "";
     }
 
-    /*public ArrayList<Object> getIndividualProduct(String owner_ID, String product_ID) {
-        // if provided owner id, product id return name and brand
-        DataSnapshot products = Reader.getInstance().readSnapshot(orderKey, order_ID).child(productKey);
-        //
-        // TO COMPLETE
-        //
-    }*/
+    public ArrayList<Object> getIndividualProduct(String owner_ID, String product_ID) {
+        // if provided owner id and product id return {itemName, itemBrand, itemPrice}
+        ArrayList<Object> item = new ArrayList<Object>();
+
+        DataSnapshot products = Reader.getInstance().readSnapshot(orderKey, owner_ID, productListKey);
+
+        for (DataSnapshot product : products.getChildren()) {
+            // if we've found the item
+            if (product.child(itemIDKey).getValue(String.class) == product_ID) {
+                item.add(product.child(itemNameKey).getValue(String.class));
+                item.add(product.child(itemBrandKey).getValue(String.class));
+                item.add(product.child(itemPriceKey).getValue(String.class));
+            }
+        }
+
+        return item;
+    }
+
+    public ArrayList<Object> getAllProducts(String owner_ID) {
+        // if provided owner id return {{itemName, itemBrand, itemPrice} ... }
+        ArrayList<Object> items = new ArrayList<Object>();
+
+        DataSnapshot products = Reader.getInstance().readSnapshot(orderKey, owner_ID, productListKey);
+
+        for (DataSnapshot product : products.getChildren()) {
+            ArrayList<Object> item = new ArrayList<Object>();
+
+            item.add(product.child(itemNameKey).getValue(String.class));
+            item.add(product.child(itemBrandKey).getValue(String.class));
+            item.add(product.child(itemPriceKey).getValue(String.class));
+
+            items.add(item);
+        }
+
+        return items;
+    }
 
     public ArrayList<Object> getProductInformation(String order_ID) {
-        // Returns {{productID1, quantity}, {productID2, quantity} ...}
+        // Returns {{productID1, quantity}, {productID2, quantity} ...} in given order
         ArrayList<Object> productInformation = new ArrayList<Object>();
-        DataSnapshot products = Reader.getInstance().readSnapshot(orderKey, order_ID).child(productKey);
+        DataSnapshot products = Reader.getInstance().readSnapshot(orderKey, order_ID, productKey);
 
         if (products == null)
             return null;
