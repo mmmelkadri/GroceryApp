@@ -32,17 +32,16 @@ public class LoginActivity extends AppCompatActivity {
 
         try {
             if (spinner_s.equals("Owner")) {
-                Owner owner = new Owner(password_s, public_s);
-                owner.writeToDatabase(username_s);
-                Toast.makeText(LoginActivity.this,"done", Toast.LENGTH_SHORT).show();
+                Owner owner = new Owner(username_s, password_s, public_s);
+                owner.writeToDatabase();
             }
             else {
-                Customer customer = new Customer(password_s, public_s);
-                customer.writeToDatabase(username_s);
+                Customer customer = new Customer(username_s, password_s, public_s);
+                customer.writeToDatabase();
             }
         }
         catch(Exception e){
-            Toast.makeText(LoginActivity.this, e.toString(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
     }
 }
