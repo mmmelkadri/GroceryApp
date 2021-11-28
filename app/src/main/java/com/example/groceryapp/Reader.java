@@ -10,6 +10,8 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.concurrent.TimeUnit;
+
 // Mohamad El Kadri
 public class Reader {
     /***************************
@@ -33,17 +35,15 @@ public class Reader {
         // Pass in keys path from mDatabase root to get value
 
         // .get() is asynchronous, so we need to wait for the database
-        Task<DataSnapshot> databaseSnapshot = mDatabase.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                if (!task.isSuccessful()) {
-                    Log.e("firebase", "Error getting data", task.getException());
-                }
-                else {
-                    Log.d("firebase", String.valueOf(task.getResult().getValue()));
-                }
-            }
-        });
+        Task<DataSnapshot> databaseSnapshot = mDatabase.get();
+        // TEMPORARY !!
+        try
+        {
+            TimeUnit.SECONDS.sleep(1);
+        }
+        catch(InterruptedException e)
+        {
+        }
 
         DataSnapshot temp = databaseSnapshot.getResult();
 
@@ -62,18 +62,15 @@ public class Reader {
         // Pass in keys path from mDatabase root to get snapshot at final key
 
         // .get() is asynchronous, so we need to wait for the database
-        Task<DataSnapshot> databaseSnapshot = mDatabase.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                if (!task.isSuccessful()) {
-                    Log.e("firebase", "Error getting data", task.getException());
-                }
-                else {
-                    Log.d("firebase", String.valueOf(task.getResult().getValue()));
-                }
-            }
-        });
-
+        Task<DataSnapshot> databaseSnapshot = mDatabase.get();
+        // TEMPORARY !!
+        try
+        {
+            TimeUnit.SECONDS.sleep(1);
+        }
+        catch(InterruptedException e)
+        {
+        }
         DataSnapshot temp = databaseSnapshot.getResult();
 
         for (String arg : args) {

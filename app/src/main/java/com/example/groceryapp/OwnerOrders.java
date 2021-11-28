@@ -18,35 +18,15 @@ public class OwnerOrders extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_owner_orders);
 
-        listView=(ListView)findViewById(R.id.listview);
+        listView=(ListView)findViewById(R.id.OwnerOderListView);
 
-        ArrayList<String> arrayList = new ArrayList<>();
-        arrayList.add("order 1");
-        arrayList.add("order 2");
-        arrayList.add("order 3");
-        arrayList.add("order 4");
-        arrayList.add("order 5");
-        arrayList.add("order 6");
-        arrayList.add("order 7");
-        arrayList.add("order 8");
-        arrayList.add("order 1");
-        arrayList.add("order 2");
-        arrayList.add("order 3");
-        arrayList.add("order 4");
-        arrayList.add("order 5");
-        arrayList.add("order 6");
-        arrayList.add("order 7");
-        arrayList.add("order 8");
-        arrayList.add("order 1");
-        arrayList.add("order 2");
-        arrayList.add("order 3");
-        arrayList.add("order 4");
-        arrayList.add("order 5");
-        arrayList.add("order 6");
-        arrayList.add("order 7");
-        arrayList.add("order 8");
+        ArrayList<String[]> arrayList = new ArrayList<>();
+        for(int i = 0; i<10; i++){
+            String[] arr = {"order "+i+"     ", String.valueOf(i)};
+            arrayList.add(arr);
+        }
 
-        ArrayAdapter arrayAdapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1, arrayList);
+        OwnerOrderBaaseAdaptor arrayAdapter = new OwnerOrderBaaseAdaptor(this,arrayList);
         listView.setAdapter(arrayAdapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
