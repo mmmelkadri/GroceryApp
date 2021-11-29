@@ -17,7 +17,7 @@
         android:textColor="#38761d"
         android:textSize="15sp"
         app:layout_constraintStart_toEndOf="@+id/plus"
-        app:layout_constraintTop_toBottomOf="@+id/item_name" />
+        app:layout_constraintTop_toBottomOf="@+id/store_name" />
 
     <TextView
         android:id="@+id/item_brand"
@@ -31,7 +31,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/amount"
+        android:id="@+id/order_id"
         android:layout_width="91dp"
         android:layout_height="35dp"
         android:layout_marginStart="16dp"
@@ -42,10 +42,10 @@
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/minus"
-        app:layout_constraintTop_toBottomOf="@+id/item_name" />
+        app:layout_constraintTop_toBottomOf="@+id/store_name" />
 
     <TextView
-        android:id="@+id/item_name"
+        android:id="@+id/store_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -71,11 +71,12 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/price"
+        android:id="@+id/completeStatus"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
+        android:fontFamily="@font/open_sans"
         android:text="TextView"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/remove"
@@ -93,5 +94,5 @@
         android:textColor="#38761d"
         android:textSize="15sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/item_name" />
+        app:layout_constraintTop_toBottomOf="@+id/store_name" />
 </androidx.constraintlayout.widget.ConstraintLayout>

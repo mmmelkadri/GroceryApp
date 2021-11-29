@@ -5,9 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.view.View;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class CheckoutActivity extends AppCompatActivity {
@@ -21,11 +19,11 @@ public class CheckoutActivity extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.rvItems);
 
         // Change total to products_and_quantity from Owner
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, total);
+        // onClick implementations in Adapter
+        CheckoutRecyclerViewAdapter adapter = new CheckoutRecyclerViewAdapter(this, total);
         recyclerView.setHasFixedSize(true);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
-
     }
 }

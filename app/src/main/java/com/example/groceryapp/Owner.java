@@ -32,7 +32,7 @@ public class Owner extends User{
         mDatabase.child("Owners").child(username).child("Password").setValue(this.password);
     }
 
-    public ArrayList<Object> getOrders(String user_ID) {
+    public ArrayList<ArrayList<String>> getOrders(String user_ID) {
         return getInformation.getInstance().getOrders(user_ID, getInformation.ownerIDKey);
     }
 

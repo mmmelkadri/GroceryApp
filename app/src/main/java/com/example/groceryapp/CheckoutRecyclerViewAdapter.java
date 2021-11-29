@@ -14,8 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 // Mohamad El Kadri
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>{
-    private static final String TAG = "RecyclerViewAdapter";
+public class CheckoutRecyclerViewAdapter extends RecyclerView.Adapter<CheckoutRecyclerViewAdapter.ViewHolder>{
+    private static final String TAG = "CheckoutRVA";
 
     // Holds the data for our buttons
     private ArrayList<ArrayList<String>> products;
@@ -37,10 +37,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         public ViewHolder(View view) {
             super(view);
             // Define click listener for the ViewHolder's View
-            itemName = view.findViewById(R.id.item_name);
+            itemName = view.findViewById(R.id.store_name);
             itemBrand = view.findViewById(R.id.item_brand);
-            itemPrice = view.findViewById(R.id.price);
-            itemAmount = view.findViewById(R.id.amount);
+            itemPrice = view.findViewById(R.id.completeStatus);
+            itemAmount = view.findViewById(R.id.order_id);
 
             remove = view.findViewById(R.id.remove);
             increment = view.findViewById(R.id.plus);
@@ -52,7 +52,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     // initializes our button data
-    public RecyclerViewAdapter(Context context, ArrayList<ArrayList<String>> products) {
+    public CheckoutRecyclerViewAdapter(Context context, ArrayList<ArrayList<String>> products) {
         mContext = context;
         this.products = products;
     }

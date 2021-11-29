@@ -147,9 +147,9 @@ public class getInformation {
         return userInformation;
     }
 
-    public ArrayList<Object> getOrders(String user_ID, String owner_or_customerIDKey) {
+    public ArrayList<ArrayList<String>> getOrders(String user_ID, String owner_or_customerIDKey) {
         // Returns {{OrderID1, state}, ...} if order owner/customer (depending on input) has same user_ID
-        ArrayList<Object> storeInformation = new ArrayList<Object>();
+        ArrayList<ArrayList<String>> storeInformation = new ArrayList<ArrayList<String>>();
         DataSnapshot orders = Reader.getInstance().readSnapshot(orderKey);
 
         if (orders == null)
@@ -157,7 +157,7 @@ public class getInformation {
 
         for (DataSnapshot order : orders.getChildren()) {
             if (order.child(owner_or_customerIDKey).getValue() == user_ID) {
-                ArrayList<Object> temp = new ArrayList<Object>();
+                ArrayList<String> temp = new ArrayList<String>();
                 temp.add(order.getKey());
                 temp.add(order.child(stateKey).getValue(String.class));
 
