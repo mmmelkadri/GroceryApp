@@ -17,28 +17,10 @@ public class CheckoutActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checkout);
 
-        // REMOVE
-        ArrayList<ArrayList<String>> total = new ArrayList<ArrayList<String>>();
-
-        ArrayList<String> a = new ArrayList<String>();
-        a.add("a");
-        a.add("a");
-        a.add("a");
-        a.add("4");
-        a.add("4");
-
-        ArrayList<String> b = new ArrayList<String>();
-        a.add("b");
-        a.add("b");
-        a.add("b");
-        a.add("4");
-        a.add("4");
-
-        total.add(a); total.add(b);
-        // REMOVE
-
         // Read users cart and add buttons to the scroll layout
         RecyclerView recyclerView = findViewById(R.id.rvItems);
+
+        // Change total to products_and_quantity from Owner
         RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, total);
         recyclerView.setHasFixedSize(true);
 

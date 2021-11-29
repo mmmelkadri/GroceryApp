@@ -1,21 +1,22 @@
 package com.example.groceryapp;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 // Mohamad El Kadri
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>{
+    private static final String TAG = "RecyclerViewAdapter";
+
     // Holds the data for our buttons
     private ArrayList<ArrayList<String>> products;
 
@@ -25,6 +26,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         TextView itemName;
         TextView itemBrand;
         TextView itemPrice;
+        TextView itemAmount;
 
         Button remove;
         Button increment;
@@ -35,15 +37,16 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         public ViewHolder(View view) {
             super(view);
             // Define click listener for the ViewHolder's View
-            itemName = itemView.findViewById(R.id.item_name);
-            itemBrand = itemView.findViewById(R.id.item_brand);
-            itemPrice = itemView.findViewById(R.id.price);
+            itemName = view.findViewById(R.id.item_name);
+            itemBrand = view.findViewById(R.id.item_brand);
+            itemPrice = view.findViewById(R.id.price);
+            itemAmount = view.findViewById(R.id.amount);
 
-            remove = itemView.findViewById(R.id.remove);
-            increment = itemView.findViewById(R.id.plus);
-            decrement = itemView.findViewById(R.id.minus);
+            remove = view.findViewById(R.id.remove);
+            increment = view.findViewById(R.id.plus);
+            decrement = view.findViewById(R.id.minus);
 
-            constraintLayout = itemView.findViewById(R.id.constraintButtonLayout);
+            constraintLayout = view.findViewById(R.id.constraintButtonLayout);
 
         }
     }
@@ -65,21 +68,30 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     // Replace the contents of a view (invoked by the layout manager)
     @Override
-    public void onBindViewHolder(ViewHolder viewHolder, final int position) {
-                /*
-        int index = viewHolder.getAdapterPosition();
-        // Set the viewHolders text at each position in products
-        viewHolder.itemName.setText(products.get(index).get(0));
-        viewHolder.itemBrand.setText(products.get(index).get(1));
-        viewHolder.itemPrice.setText(products.get(index).get(2));
+    public void onBindViewHolder(ViewHolder viewHolder, int position) {
 
+        Log.d(TAG, "onBindViewHolder called");
+        int index = viewHolder.getAdapterPosition();
+        Log.d(TAG, "adapter: " + index);
+
+        // object has been removed
+        if (index == -1)
+            return;
+
+        // Set the viewHolders text at each position in products
+        viewHolder.itemName.setText(String.valueOf(products.get(index).get(0)));
+
+        viewHolder.itemBrand.setText(String.valueOf(products.get(index).get(1)));
+        viewHolder.itemPrice.setText(String.valueOf(products.get(index).get(2)));
+        viewHolder.itemAmount.setText(String.valueOf(products.get(index).get(4)));
 
         viewHolder.increment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // get quantity and increment in product
                 int quantity = Integer.valueOf(products.get(index).get(4));
-                products.get(viewHolder.getAdapterPosition()).set(4, String.valueOf(quantity + 1));
+                products.get(index).set(4, String.valueOf(quantity + 1));
+                viewHolder.itemAmount.setText(String.valueOf(products.get(index).get(4)));
             }
         });
 
@@ -88,8 +100,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             public void onClick(View v) {
                 // get quantity and decrement in product
                 int quantity = Integer.valueOf(products.get(index).get(4));
-                if (quantity > 0)
+
+                // minimum quantity must be 1
+                if (quantity > 1)
                     products.get(index).set(4, String.valueOf(quantity - 1));
+                    viewHolder.itemAmount.setText(String.valueOf(products.get(index).get(4)));
             }
         });
 
@@ -100,7 +115,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 notifyItemRemoved(index);
                 notifyItemRangeChanged(index, products.size());
             }
-        });*/
+        });
     }
 
     // Return the size of your dataset (invoked by the layout manager)
