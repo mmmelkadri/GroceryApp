@@ -1,9 +1,14 @@
 package com.example.groceryapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.View;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 public class CheckoutActivity extends AppCompatActivity {
 
@@ -12,33 +17,33 @@ public class CheckoutActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checkout);
 
-        // Read users cart in database and add buttons to the scroll layout
-    }
+        // REMOVE
+        ArrayList<ArrayList<String>> total = new ArrayList<ArrayList<String>>();
 
-    public void displayItems(View view) {
+        ArrayList<String> a = new ArrayList<String>();
+        a.add("a");
+        a.add("a");
+        a.add("a");
+        a.add("4");
+        a.add("4");
 
-    }
+        ArrayList<String> b = new ArrayList<String>();
+        a.add("b");
+        a.add("b");
+        a.add("b");
+        a.add("4");
+        a.add("4");
 
-    public void incrementItem(View view) {
-        // Write to cart database, item amount + 1
-        // redisplay onCreate
-    }
+        total.add(a); total.add(b);
+        // REMOVE
 
-    public void decrementItem(View view) {
-        // Write to cart database, item amount - 1
-        // if amount is already 1, do nothing
-        // redisplay onCreate
+        // Read users cart and add buttons to the scroll layout
+        RecyclerView recyclerView = findViewById(R.id.rvItems);
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, total);
+        recyclerView.setHasFixedSize(true);
 
-    }
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(adapter);
 
-    public void removeItem(View view) {
-        // Look in cart database and remove item
-        // redisplay onCreate
-
-    }
-
-    public void checkout(View view) {
-        // Write order to both owner and customer
-        // Clear cart
     }
 }

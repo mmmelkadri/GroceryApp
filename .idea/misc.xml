@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../layout/custom_preview.xml" value="0.1828125" />
         <entry key="..\:/Users/Aditya/AndroidStudioProjects/Grocery_App/app/src/main/res/drawable/round_button.xml" value="0.21614583333333334" />
         <entry key="..\:/Users/Aditya/AndroidStudioProjects/Grocery_App/app/src/main/res/font/open_sans.xml" value="0.23020833333333332" />
         <entry key="..\:/Users/Aditya/AndroidStudioProjects/Grocery_App/app/src/main/res/layout/activity_all_store_page.xml" value="0.19444444444444445" />
@@ -17,14 +18,14 @@
         <entry key="..\:/Users/Aditya/AndroidStudioProjects/Grocery_App/app/src/main/res/layout/activity_personal_store.xml" value="0.22" />
         <entry key="..\:/Users/Aditya/AndroidStudioProjects/Grocery_App/app/src/main/res/layout/activity_product.xml" value="0.14666666666666667" />
         <entry key="..\:/Users/Aditya/AndroidStudioProjects/Grocery_App/app/src/main/res/layout/activity_sign_up.xml" value="0.22" />
-        <entry key="..\:/Users/elnagne13/AndroidStudioProjects/GroceryApp/app/src/main/res/layout/activity_create_new_item.xml" value="0.26975683890577506" />
-        <entry key="..\:/Users/elnagne13/AndroidStudioProjects/GroceryApp/app/src/main/res/layout/activity_login.xml" value="0.4266304347826087" />
-        <entry key="..\:/Users/elnagne13/AndroidStudioProjects/GroceryApp/app/src/main/res/layout/activity_owner_order_button_lv.xml" value="0.32065217391304346" />
-        <entry key="..\:/Users/elnagne13/AndroidStudioProjects/GroceryApp/app/src/main/res/layout/activity_owner_orders.xml" value="0.32065217391304346" />
-        <entry key="..\:/Users/elnagne13/AndroidStudioProjects/GroceryApp/app/src/main/res/layout/activity_pending_order.xml" value="0.3359375" />
-        <entry key="..\:/Users/elnagne13/AndroidStudioProjects/GroceryApp/app/src/main/res/layout/activity_personal_store.xml" value="0.3359375" />
-        <entry key="..\:/Users/elnagne13/AndroidStudioProjects/GroceryApp/app/src/main/res/layout/activity_sign_up.xml" value="0.3359375" />
-        <entry key="..\:/Users/elnagne13/AndroidStudioProjects/GroceryApp/app/src/main/res/layout/pending_orders_list_view.xml" value="0.3359375" />
+        <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.16979166666666667" />
+        <entry key="app/src/main/res/layout/activity_checkout.xml" value="0.375" />
+        <entry key="app/src/main/res/layout/activity_owner_order_button_lv.xml" value="0.1609375" />
+        <entry key="app/src/main/res/layout/activity_pending_order.xml" value="0.15364583333333334" />
+        <entry key="app/src/main/res/layout/activity_product.xml" value="0.15364583333333334" />
+        <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.15364583333333334" />
+        <entry key="app/src/main/res/layout/individual_product_button.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/pending_orders_list_view.xml" value="0.15364583333333334" />
       </map>
     </option>
   </component>

@@ -5,6 +5,7 @@
     <string name="checkout">Checkout</string>
     <string name="checkoutButton">CHECKOUT</string>
     <string name="add_to_cart">Add to Cart</string>
+    <string name="removeButton">REMOVE</string>
     <string name="Username">Username</string>
     <string name="Password">Password</string>
     <string name="login_as_owner_button">Login as Owner</string>
