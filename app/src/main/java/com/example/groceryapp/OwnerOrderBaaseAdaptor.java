@@ -1,6 +1,7 @@
 package com.example.groceryapp;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,8 +40,22 @@ public class OwnerOrderBaaseAdaptor extends BaseAdapter {
         convertView = inflater.inflate(R.layout.activity_owner_order_button_lv, null);
         TextView textViewOrder = (TextView) convertView.findViewById(R.id.textViewOrder);
         TextView textViewState = (TextView) convertView.findViewById(R.id.textViewState);
+        TextView textViewFiller = (TextView) convertView.findViewById(R.id.order_filler);
+        textViewFiller.setTextSize(24);
         textViewOrder.setText(array_list.get(position)[0]);
-        textViewState.setText(array_list.get(position)[1]);
+        textViewOrder.setTextSize(24);
+
+        String state_s = array_list.get(position)[1];
+        textViewState.setText(state_s);
+        if(state_s.equals("Completed")){
+            textViewState.setTextColor(context.getResources().getColor(R.color.App_green));
+        }
+        else {
+            textViewState.setTextColor(Color.RED);
+        }
+        textViewState.setTextSize(20);
+
+
         return convertView;
     }
 }

@@ -13,6 +13,4 @@ public class User {
         this.display_name = display_name;
 
     }
-
-
 }

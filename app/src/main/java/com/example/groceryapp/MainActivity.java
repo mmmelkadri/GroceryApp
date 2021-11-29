@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 MainActivity.this.runOnUiThread(new Runnable() {
                     public void run() {
-                        startActivity(new Intent(MainActivity.this, SignUpActivity.class));
+                        startActivity(new Intent(MainActivity.this, LoginActivity.class));
                     }
                 });
 

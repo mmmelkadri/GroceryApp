@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/App_grey"
     android:padding="16dp"
-    tools:context=".LoginActivity">
+    tools:context=".SignUpActivity">
 
     <TextView
         android:id="@+id/Signup_Heading"
