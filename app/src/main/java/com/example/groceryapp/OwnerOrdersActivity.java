@@ -44,7 +44,7 @@ public class OwnerOrdersActivity extends AppCompatActivity {
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l){
                     String order_id = arrayList.get(i)[0];
                     Intent intent_next = new Intent(OwnerOrdersActivity.this, PendingOrderActivity.class);
-                    intent_next.putExtra("order id", order_id);
+                    intent_next.putExtra("ORDER_ID", order_id);
                     startActivity(intent_next);
                 }
         });
