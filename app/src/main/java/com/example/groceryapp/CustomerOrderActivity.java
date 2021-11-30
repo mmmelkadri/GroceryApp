@@ -16,7 +16,7 @@ public class CustomerOrderActivity extends AppCompatActivity {
 
         // Receive customer_id and store_name
 
-        ArrayList<ArrayList<String>> orders = getInformation.getInstance().getOrders(user_ID, getInformation.customerIDKey);
+        /*ArrayList<ArrayList<String>> orders = getInformation.getInstance().getOrders(user_ID, getInformation.customerIDKey);
 
         // Read users cart and add buttons to the scroll layout
         RecyclerView recyclerView = findViewById(R.id.rvOrders);
@@ -25,6 +25,6 @@ public class CustomerOrderActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(adapter);
+        recyclerView.setAdapter(adapter);*/
     }
 }

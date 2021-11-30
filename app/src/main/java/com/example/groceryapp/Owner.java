@@ -20,6 +20,7 @@ public class Owner extends User{
         if (username.equals("")||password.equals("")||display_name.equals("")){
             throw new IllegalArgumentException("Missing fields, please complete all the required fields");
         }
+
         ArrayList<Object> all_users = getInformation.getInstance().getAllUsers(getInformation.ownerKey);
         for(Object i:all_users){
             if(username.equals(i)){

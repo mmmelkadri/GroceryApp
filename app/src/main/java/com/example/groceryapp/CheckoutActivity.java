@@ -20,10 +20,10 @@ public class CheckoutActivity extends AppCompatActivity {
 
         // Change total to products_and_quantity from Owner
         // onClick implementations in Adapter
-        CheckoutRecyclerViewAdapter adapter = new CheckoutRecyclerViewAdapter(this, total);
+        /*CheckoutRecyclerViewAdapter adapter = new CheckoutRecyclerViewAdapter(this, total);
         recyclerView.setHasFixedSize(true);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(adapter);
+        recyclerView.setAdapter(adapter);*/
     }
 }
