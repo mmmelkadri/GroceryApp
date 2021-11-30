@@ -17,24 +17,11 @@ public class OwnerOrdersActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_owner_orders);
-        // TODO: CHANGE FOR GET INTENT TO GET USERid
         Intent get_intent = getIntent();
         String USER_ID = get_intent.getStringExtra("USER_ID");
 
         listView=(ListView)findViewById(R.id.OwnerOderListView);
-        ArrayList<String[]> arrayList = new ArrayList<>();
-
-        for(int i = 0; i<10; i++){
-
-            String[] arr;
-            if(i%3==0){
-                arr = new String[]{"" + i, "Completed"};
-            }
-            else{
-                arr = new String[]{"" + i, "Incomplete"};
-            }
-            arrayList.add(arr);
-        }
+        ArrayList<ArrayList<String>> arrayList = getInformation.getInstance().getOrders(USER_ID,getInformation.ownerKey);
 
         OwnerOrderBaaseAdaptor arrayAdapter = new OwnerOrderBaaseAdaptor(this,arrayList);
         listView.setAdapter(arrayAdapter);
@@ -42,7 +29,7 @@ public class OwnerOrdersActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l){
-                    String order_id = arrayList.get(i)[0];
+                    String order_id = arrayList.get(i).get(0);
                     Intent intent_next = new Intent(OwnerOrdersActivity.this, PendingOrderActivity.class);
                     intent_next.putExtra("ORDER_ID", order_id);
                     startActivity(intent_next);
