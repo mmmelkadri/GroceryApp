@@ -9,21 +9,21 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 //TODO: Change to adapt Products
-public class ProductAdapter extends ArrayAdapter<Object> {
-    public ProductAdapter(Context context, ArrayList<Object> list) {
+public class PendingOrderProductAdapter extends ArrayAdapter<Object> {
+    public PendingOrderProductAdapter(Context context, ArrayList<Object> list) {
         super(context, 0, list);
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        ArrayList obj = (ArrayList) getItem(position);
+        ArrayList<String> obj = (ArrayList<String>) getItem(position);
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.pending_orders_list_view, parent, false);
         }
         TextView item = (TextView) convertView.findViewById(R.id.item);
         TextView quantity = (TextView) convertView.findViewById(R.id.quantity);
-        item.setText((Integer) obj.get(0));
-        quantity.setText((Integer) obj.get(1));
+        item.setText((String) obj.get(0));
+        quantity.setText((String) obj.get(1));
         return convertView;
     }
 }

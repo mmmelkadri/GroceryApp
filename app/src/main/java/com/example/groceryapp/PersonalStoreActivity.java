@@ -19,8 +19,10 @@ public class PersonalStoreActivity extends AppCompatActivity {
         TODO: Use get_intent to retrieve store's name and send this information to OwnerOrders so
          owner's/store's pending orders can be loaded.
         */
-        Intent get_intent = getIntent();
+        Intent intent = getIntent();
+        //String owner_id = intent.getStringExtra(USER_ID);
         Intent send_intent = new Intent(this, OwnerOrdersActivity.class);
+        //send_intent.putExtra(USER_ID, owner_id);
         startActivity(send_intent);
     }
 
@@ -29,8 +31,10 @@ public class PersonalStoreActivity extends AppCompatActivity {
         TODO: Use get_intent to retrieve store's name and send this information to CreateNewItem.
          This way, CreateNewItem will know where to save the newly-created item.
         */
-        Intent get_intent = getIntent();
+        Intent intent = getIntent();
+        //String owner_id = intent.getStringExtra(USER_ID);
         Intent send_intent = new Intent(this, CreateNewItem.class);
+        //send_intent.putExtra(USER_ID, owner_id);
         startActivity(send_intent);
     }
 }

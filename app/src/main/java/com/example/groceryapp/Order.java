@@ -66,20 +66,6 @@ public class Order  {
         }
         orderId = Integer.toString(Integer.valueOf(i));
         write_to_database();
-
-        /*Shouldn't this be a part of write_to_database()?
-        mDatabase.child("users").child(ownerID).child("orders").child(orderid).child("state").setValue("incomplete");
-        mDatabase.child("users").child(ownerID).child("orders").child(orderid).child("customerId").setValue(customerId);
-        mDatabase.child("users").child(ownerID).child("orders").child(orderid).child("ownerId").setValue(ownerID);
-
-        mDatabase.child("users").child(customerId).child("orders").child(orderid).child("state").setValue("incomplete");
-        mDatabase.child("users").child(customerId).child("orders").child(orderid).child("customerId").setValue(customerId);
-        mDatabase.child("users").child(customerId).child("orders").child(orderid).child("ownerId").setValue(ownerID);
-
-        mDatabase.child("orders").child(orderid).child("state").setValue("incomplete");
-        mDatabase.child("orders").child(orderid).child("customerId").setValue(customerId);
-        mDatabase.child("orders").child(orderid).child("ownerId").setValue(ownerID);
-        */
     }
 
     public void write_to_database(){

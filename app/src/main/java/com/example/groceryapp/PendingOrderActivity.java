@@ -21,9 +21,9 @@ public class PendingOrderActivity extends AppCompatActivity {
         setContentView(R.layout.activity_pending_order);
         //TODO: Change to adapt Products
         Intent get_intent = getIntent();
-        String orderid = get_intent.toString();
+        String order_id = get_intent.getStringExtra("ORDER_ID");
         ArrayList<Object> productInformation = new ArrayList<Object>();
-        DataSnapshot products = Reader.getInstance().readSnapshot("order", orderid).child("product");
+        DataSnapshot products = Reader.getInstance().readSnapshot("order", order_id).child("product");
 
         if (products != null) {
             for (DataSnapshot product : products.getChildren()) {
@@ -35,20 +35,19 @@ public class PendingOrderActivity extends AppCompatActivity {
             }
         }
 
-        ProductAdapter adapter = new ProductAdapter(this, productInformation);
+        PendingOrderProductAdapter adapter = new PendingOrderProductAdapter(this, productInformation);
         ListView listView = (ListView) findViewById(R.id.orderItemsListView);
         listView.setAdapter(adapter);
-
     }
 
     public void onClickCheck(View view) {
         /* TODO: Mark order as complete in database. The intent get_intent should give the order ID.
         */
         Intent get_intent = getIntent();
-        String orderid = get_intent.toString();
+        String order_id = get_intent.getStringExtra("ORDER_ID");
 
-        ArrayList<Object> list = getInformation.getInstance().getOrderInformation(orderid);
+        ArrayList<Object> list = getInformation.getInstance().getOrderInformation(order_id);
         Order order = new Order((String) list.get(0), (String) list.get(1));
-        order.change_order_status(orderid);
+        order.change_order_status(order_id);
     }
 }
