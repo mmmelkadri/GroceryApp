@@ -15,6 +15,7 @@
     <string name="role">Role</string>
     <string name="enter_username">Enter Username</string>
     <string name="enter_password">Enter Password</string>
+    <string name="enter_display_name">Enter Display Name</string>
     <string name="stores">Stores</string>
     <string name="button_pending_orders">Pending Orders</string>
     <string name="button_new_item">Create New Item</string>

@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/App_grey"
     tools:context=".AllStoreSingleRow">
 
     <ImageView
+        android:id="@+id/AllStore_store_icon"
         android:layout_width="75dp"
         android:layout_height="75dp"
-        android:src="@drawable/ic_store"
-        android:id="@+id/AllStore_store_icon"
-        />
+        android:src="@drawable/ic_store" />
 
     <TextView
         android:id="@+id/Allstore_store_textView"
@@ -20,6 +20,7 @@
         android:fontFamily="@font/open_sans"
         android:gravity="center"
         android:text="My_text"
+        android:textColor="@color/App_green"
         android:textSize="30sp"
         android:textStyle="bold"
         android:typeface="sans" />
