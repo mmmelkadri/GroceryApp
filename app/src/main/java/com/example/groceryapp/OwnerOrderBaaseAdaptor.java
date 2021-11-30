@@ -12,10 +12,10 @@ import java.util.ArrayList;
 
 public class OwnerOrderBaaseAdaptor extends BaseAdapter {
     Context context;
-    ArrayList<String[]> array_list;
+    ArrayList<ArrayList<String>> array_list;
     LayoutInflater inflater;
 
-    public OwnerOrderBaaseAdaptor(Context ctx, ArrayList<String[]> arr){
+    public OwnerOrderBaaseAdaptor(Context ctx, ArrayList<ArrayList<String>> arr){
         this.context = ctx;
         this.array_list = arr;
         inflater = LayoutInflater.from(ctx);
@@ -42,10 +42,10 @@ public class OwnerOrderBaaseAdaptor extends BaseAdapter {
         TextView textViewState = (TextView) convertView.findViewById(R.id.textViewState);
         TextView textViewFiller = (TextView) convertView.findViewById(R.id.order_filler);
         textViewFiller.setTextSize(24);
-        textViewOrder.setText(array_list.get(position)[0]);
+        textViewOrder.setText(array_list.get(position).get(0));
         textViewOrder.setTextSize(24);
 
-        String state_s = array_list.get(position)[1];
+        String state_s = array_list.get(position).get(1);
         textViewState.setText(state_s);
         if(state_s.equals("Completed")){
             textViewState.setTextColor(context.getResources().getColor(R.color.App_green));
