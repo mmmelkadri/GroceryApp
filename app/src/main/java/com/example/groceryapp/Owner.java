@@ -20,13 +20,13 @@ public class Owner extends User{
         if (username.equals("")||password.equals("")||display_name.equals("")){
             throw new IllegalArgumentException("Missing fields, please complete all the required fields");
         }
-
+/*
         ArrayList<Object> all_users = getInformation.getInstance().getAllUsers(getInformation.ownerKey);
         for(Object i:all_users){
             if(username.equals(i)){
                 throw new IllegalArgumentException("This username is already in use, please change your username");
             }
-        }
+        }*/
 
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
         mDatabase.child("Owners").child(username).child("Public Name").setValue(this.display_name);
