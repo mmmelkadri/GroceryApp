@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GroceryApp">
         <activity
+            android:name=".AllStoreSingleRow"
+            android:exported="false" />
+        <activity
             android:name=".OwnerOrderButtonLV"
             android:exported="false" />
         <activity

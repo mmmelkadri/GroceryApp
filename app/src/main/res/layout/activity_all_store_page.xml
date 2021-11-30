@@ -11,24 +11,30 @@
         android:id="@+id/Allstore_Heading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="48dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/open_sans_bold"
         android:text="@string/stores"
         android:textColor="@color/App_green"
         android:textSize="34sp"
         android:textStyle="bold"
         android:typeface="sans"
-        app:layout_constraintBottom_toTopOf="@+id/_dynamic"
+        app:layout_constraintBottom_toTopOf="@+id/Allstore_StoreList_ListView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ListView
-        android:id="@+id/Allstore_Storelist_ListView"
-        android:layout_width="409dp"
+        android:id="@+id/Allstore_StoreList_ListView"
+        android:layout_width="0dp"
         android:layout_height="635dp"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="95dp" />
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="@color/App_grey"
+        android:divider="@color/App_grey"
+        android:dividerHeight="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

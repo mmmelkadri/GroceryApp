@@ -45,6 +45,7 @@ public class LoginActivity extends AppCompatActivity {
         for(Object i:all_users){
             if(username.equals(i)){
                 user_found = true;
+                break;
             }
         }
 
@@ -52,7 +53,8 @@ public class LoginActivity extends AppCompatActivity {
             DataSnapshot password_snap = Reader.getInstance()
                     .readSnapshot(getInformation.ownerKey, username, "password");
             if(password_snap.getValue().toString().equals(password)){
-                Intent intent = new Intent(this, PersonalStoreActivity.class);
+                Intent intent = new Intent(this, PersonalStoreActivity.class)
+                        .putExtra("username_key", username);
                 startActivity(intent);
             }
             else{
@@ -86,6 +88,7 @@ public class LoginActivity extends AppCompatActivity {
         for(Object i:all_users){
             if(username.equals(i)){
                 user_found = true;
+                break;
             }
         }
 
@@ -93,7 +96,8 @@ public class LoginActivity extends AppCompatActivity {
             DataSnapshot password_snap = Reader.getInstance()
                     .readSnapshot(getInformation.customerKey, username, "password");
             if(password_snap.getValue().toString().equals(password)){
-                Intent intent = new Intent (this, AllStorePageActivity.class);
+                Intent intent = new Intent (this, AllStorePageActivity.class)
+                        .putExtra("username_key", username);
                 startActivity(intent);
             }
             else{
