@@ -31,9 +31,9 @@ public class PendingOrderActivity extends AppCompatActivity {
         Intent get_intent = getIntent();
         String order_id = get_intent.getStringExtra("ORDER_ID");
 
-        DataSnapshot dataSnapshot = getSnapshot.snapshot.dataSnapshot;
-        String customerid = Reader.getInstance().readValue(dataSnapshot,"order", order_id, "customer_id");
-        String ownerid = Reader.getInstance().readValue(dataSnapshot,"order", order_id, "owner_id");
+        DataSnapshot dataSnapshot = Reader.getInstance().dataSnapshot;
+        String customerid = Reader.getInstance().readValue("order", order_id, "customer_id");
+        String ownerid = Reader.getInstance().readValue("order", order_id, "owner_id");
         Order order = new Order(customerid, ownerid);
         order.change_order_status(order_id);
     }

@@ -25,8 +25,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void SignUpButton (View view){
-        localDatabase.access();
-
         Intent intent = new Intent(this, SignUpActivity.class);
 
         startActivity(intent);

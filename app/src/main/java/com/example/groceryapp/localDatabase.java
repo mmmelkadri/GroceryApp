@@ -17,7 +17,7 @@ public class localDatabase {
     private static localDatabase local;
 
     private localDatabase() {
-        this.dataSnapshot = getSnapshot.snapshot.dataSnapshot;
+        this.dataSnapshot = Reader.getInstance().dataSnapshot;
         setOwners();
         setCustomers();
         setOrders();
@@ -31,7 +31,7 @@ public class localDatabase {
     }
 
     private void setOwners() {
-        getInformation info = new getInformation(dataSnapshot);
+        getInformation info = new getInformation();
         ArrayList<String> ownerIDs = info.getAllUsers(info.ownerKey);
 
         owners = new ArrayList<>();
@@ -60,7 +60,7 @@ public class localDatabase {
     }
 
     private void setCustomers() {
-        getInformation info = new getInformation(dataSnapshot);
+        getInformation info = new getInformation();
         ArrayList<String> customerIDs = info.getAllUsers(info.customerKey);
 
         customers = new ArrayList<>();
@@ -77,7 +77,7 @@ public class localDatabase {
     }
 
     public void setOrders() {
-        getInformation info = new getInformation(dataSnapshot);
+        getInformation info = new getInformation();
         orders = info.getAllOrders();
     }
 

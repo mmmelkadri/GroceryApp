@@ -43,17 +43,17 @@ public class getInformation {
      * since dataSnapshot is not refreshed
      * ************************************************/
 
-    public getInformation(DataSnapshot dataSnapshot) {
-        this.dataSnapshot = dataSnapshot;
+    public getInformation() {
+        this.dataSnapshot = Reader.getInstance().dataSnapshot;
     }
 
-    public void updateData(DataSnapshot dataSnapshot) {
-        this.dataSnapshot = dataSnapshot;
+    public void updateData() {
+        this.dataSnapshot = Reader.getInstance().dataSnapshot;
     }
 
     public String getStoreName(String owner_ID) {
         // Returns store name with owner_ID as username
-        DataSnapshot stores = Reader.getInstance().readSnapshot(dataSnapshot, ownerKey);
+        DataSnapshot stores = Reader.getInstance().readSnapshot(ownerKey);
 
         if (stores == null)
             return null;
@@ -72,7 +72,7 @@ public class getInformation {
         // if provided owner id and product id return {itemName, itemBrand, itemPrice}
         ArrayList<String> item = new ArrayList<String>();
 
-        DataSnapshot products = Reader.getInstance().readSnapshot(dataSnapshot, orderKey, owner_ID, productListKey);
+        DataSnapshot products = Reader.getInstance().readSnapshot(orderKey, owner_ID, productListKey);
 
         for (DataSnapshot product : products.getChildren()) {
             // if we've found the item
@@ -90,7 +90,7 @@ public class getInformation {
         // if provided owner id return {{itemName, itemBrand, itemPrice} ... }
         ArrayList<ArrayList<String>> items = new ArrayList<>();
 
-        DataSnapshot products = Reader.getInstance().readSnapshot(dataSnapshot, orderKey, owner_ID, productListKey);
+        DataSnapshot products = Reader.getInstance().readSnapshot(orderKey, owner_ID, productListKey);
 
         for (DataSnapshot product : products.getChildren()) {
             ArrayList<String> item = new ArrayList<>();
@@ -108,7 +108,7 @@ public class getInformation {
     public ArrayList<ArrayList<String>> getProductInformation(String order_ID) {
         // Returns {{productID1, quantity}, {productID2, quantity} ...} in given order
         ArrayList<ArrayList<String>> productInformation = new ArrayList<>();
-        DataSnapshot products = Reader.getInstance().readSnapshot(dataSnapshot, orderKey, order_ID, productKey);
+        DataSnapshot products = Reader.getInstance().readSnapshot(orderKey, order_ID, productKey);
 
         if (products == null)
             return null;
@@ -127,7 +127,7 @@ public class getInformation {
     public ArrayList<String> getPasswordAndDisplay(String owner_or_customerKey, String IDKey) {
         // Returns {password, display_name}
         ArrayList<String> display_and_password = new ArrayList<>();
-        DataSnapshot snap = Reader.getInstance().readSnapshot(dataSnapshot, owner_or_customerKey, IDKey);
+        DataSnapshot snap = Reader.getInstance().readSnapshot(owner_or_customerKey, IDKey);
 
         if (snap == null)
             return null;
@@ -142,7 +142,7 @@ public class getInformation {
         // Returns {{{OrderID1, customerID1, ownerID1}, {productID1, productQuantity1}, {productID2, productQuantity2}...}, ...}
         ArrayList<ArrayList<ArrayList<String>>> allOrders = new ArrayList<>();
 
-        DataSnapshot orders = Reader.getInstance().readSnapshot(dataSnapshot, orderKey);
+        DataSnapshot orders = Reader.getInstance().readSnapshot(orderKey);
 
         for (DataSnapshot order : orders.getChildren()) {
             ArrayList<ArrayList<String>> temp = new ArrayList<>();
@@ -172,7 +172,7 @@ public class getInformation {
     public ArrayList<String> getAllUsers(String owner_or_customerKey) {
         // Returns {UserID1, UserID2 ... }, owner/customer user depending on key
         ArrayList<String> userInformation = new ArrayList<String>();
-        DataSnapshot users = Reader.getInstance().readSnapshot(dataSnapshot, owner_or_customerKey);
+        DataSnapshot users = Reader.getInstance().readSnapshot(owner_or_customerKey);
 
         if (users == null)
             return null;
@@ -187,7 +187,7 @@ public class getInformation {
     public ArrayList<ArrayList<String>> getOrders(String user_ID, String owner_or_customerIDKey) {
         // Returns {{OrderID1, state}, ...} if order owner/customer (depending on input) has same user_ID
         ArrayList<ArrayList<String>> storeInformation = new ArrayList<>();
-        DataSnapshot orders = Reader.getInstance().readSnapshot(dataSnapshot, orderKey);
+        DataSnapshot orders = Reader.getInstance().readSnapshot(orderKey);
 
         if (orders == null)
             return null;
