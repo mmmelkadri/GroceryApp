@@ -25,18 +25,16 @@ public class ProductActivity extends AppCompatActivity {
 
         // receive Intent itemID, read item name, brand and price
         Intent intent = getIntent();
-        String owner_ID = intent.getStringExtra("OWNER_ID");
-        String item_ID = intent.getStringExtra("ITEM_ID");
 
-        ArrayList<Object> product_info = getInformation.getInstance().getIndividualProduct(owner_ID, item_ID);
+        // Receive product object
 
         // Create a product object to add to the order
-        product = new Product(item_ID, (String) product_info.get(0),
+        product = new Product(item_ID,
                 (String) product_info.get(2), (String) product_info.get(1));
 
         // Set the values on the layout
         TextView itemName = (TextView) findViewById(R.id.itemName);
-        itemName.setText(product.product_name);
+        itemName.setText(product.product_Id);
 
         TextView itemBrand = (TextView) findViewById(R.id.itemBrand);
         itemName.setText(product.brand);

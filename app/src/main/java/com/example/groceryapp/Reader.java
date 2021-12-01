@@ -13,12 +13,10 @@ public class Reader {
      * Generic FireBase reader *
      * ************************/
 
-    DatabaseReference mDatabase;
-    public static Reader read;
+    private static Reader read;
+    DataSnapshot dataSnapshot;
 
-    private Reader() {
-        mDatabase = FirebaseDatabase.getInstance().getReference();
-    }
+    private Reader() { }
 
     public static Reader getInstance() {
         if (read == null)
@@ -26,51 +24,31 @@ public class Reader {
         return read;
     }
 
-    public String readValue(String... args) {
+    public String readValue(DataSnapshot dataSnapshot, String... args) {
         // Pass in keys path from mDatabase root to get value
 
-        // .get() is asynchronous, so we need to wait for the database
-        try {
-            DataSnapshot temp = Tasks.await(mDatabase.get());
+        for (String arg : args) {
+            // if the child does not exist, return empty string
+            if (dataSnapshot.child(arg) == null)
+                return "";
 
-            for (String arg : args) {
-                // if the child does not exist, return empty string
-                if (temp.child(arg) == null)
-                    return "";
-
-                temp = temp.child(arg);
-            }
-
-            return (String) temp.getValue(String.class);
-
-        } catch (ExecutionException | InterruptedException e) {
-            e.printStackTrace();
+            dataSnapshot = dataSnapshot.child(arg);
         }
 
-        return "";
+        return (String) dataSnapshot.getValue(String.class);
     }
 
-    public DataSnapshot readSnapshot(String... args) {
+    public DataSnapshot readSnapshot(DataSnapshot dataSnapshot, String... args) {
         // Pass in keys path from mDatabase root to get snapshot at final key
 
-        // .get() is asynchronous, so we need to wait for the database
-        try {
-            DataSnapshot temp = Tasks.await(mDatabase.get());
+        for (String arg : args) {
+            // if the child does not exist, return null
+            if (dataSnapshot.child(arg) == null)
+                return null;
 
-            for (String arg : args) {
-                // if the child does not exist, return null
-                if (temp.child(arg) == null)
-                    return null;
-
-                temp = temp.child(arg);
-            }
-
-            return temp;
-
-        } catch (ExecutionException | InterruptedException e) {
-            e.printStackTrace();
+            dataSnapshot = dataSnapshot.child(arg);
         }
 
-        return null;
+        return dataSnapshot;
     }
 }

@@ -31,7 +31,7 @@ public class CreateNewItem extends AppCompatActivity {
         String user_id = "KFC"; //CHANGE WHEN CONNECTED TO PARENT TO GET ID AS INTENT
 
         try {
-            Product product = new Product(name_s, name_s, price_s, brand_s);
+            Product product = new Product(name_s, price_s, brand_s);
             product.writeToDatabase(user_id);
             Toast.makeText(CreateNewItem.this, "Product Succesfully added!", Toast.LENGTH_SHORT).show();
         } catch (Exception e) {

@@ -6,10 +6,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 
 public class Customer extends User{
-    ArrayList<String> orders;
+    ArrayList<ArrayList<String>> orders;
     Order cart;
+    String username;
+    String display_name;
+    String password;
+
     public Customer(String username, String password, String display_name){
-        orders = new ArrayList<String>();
+        orders = new ArrayList<>();
         this.password = password;
         this.display_name = display_name;
         this.username = username;

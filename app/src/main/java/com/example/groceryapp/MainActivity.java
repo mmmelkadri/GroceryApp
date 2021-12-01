@@ -23,14 +23,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // MUST be called to initialize Reader, since .get() is asynchronous
-        Reader.getInstance();
+        // MUST be called ahead of delay, since .get() is asynchronous
+        getSnapshot snapshot = new getSnapshot();
 
         // login delay
         new Timer().schedule(new TimerTask(){
             public void run() {
                 MainActivity.this.runOnUiThread(new Runnable() {
                     public void run() {
+                        localDatabase.access().setSnapshot(snapshot.dataSnapshot);
                         startActivity(new Intent(MainActivity.this, LoginActivity.class));
                     }
                 });
