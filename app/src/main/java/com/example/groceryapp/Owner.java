@@ -25,8 +25,7 @@ public class Owner extends User{
             throw new IllegalArgumentException("Missing fields, please complete all the required fields");
         }
 
-        // getOwner returns null if username is not in Owners
-        if(localDatabase.access().getOwner(username) != null){
+        if(getInformation.getInstance().getAllUsers(getInformation.ownerKey).contains(username)){
             throw new IllegalArgumentException("This username is already in use, please change your username");
         }
 

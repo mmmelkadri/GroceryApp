@@ -11,6 +11,7 @@ import android.widget.ListView;
 
 import com.google.firebase.database.DataSnapshot;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class PendingOrderActivity extends AppCompatActivity {
@@ -21,7 +22,19 @@ public class PendingOrderActivity extends AppCompatActivity {
         setContentView(R.layout.activity_pending_order);
         Intent get_intent = getIntent();
         String order_id = get_intent.getStringExtra("ORDER_ID");
-        ArrayList<ArrayList<String>> productInformation = localDatabase.access().getOrder(order_id);
+
+        ArrayList<ArrayList<ArrayList<String>>> allOrders = getInformation.getInstance().getAllOrders();
+
+        ArrayList<ArrayList<String>> productInformation = new ArrayList<>();
+
+        // iterate through allOrders to find the correct order
+        for (ArrayList<ArrayList<String>> order : allOrders) {
+            if (order.get(0).get(0).equals(order_id)) {
+                productInformation = order;
+                break;
+            }
+        }
+
         PendingOrderProductAdapter adapter = new PendingOrderProductAdapter(this, productInformation);
         ListView listView = (ListView) findViewById(R.id.orderItemsListView);
         listView.setAdapter(adapter);

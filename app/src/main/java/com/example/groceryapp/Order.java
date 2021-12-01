@@ -40,7 +40,7 @@ public class Order  {
             status = false;
         }
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-        String status = localDatabase.access().getOrder(orderid).get(0).get(2);
+        String status = getInformation.getInstance().getState(orderid);
         if (status.equals("incomplete")) {
             mDatabase.child("users").child(ownerID).child("orders").child(orderid).child("state").setValue("complete");
             mDatabase.child("users").child(customerId).child("orders").child(orderid).child("state").setValue("complete");
@@ -55,7 +55,7 @@ public class Order  {
 
     public void checkoutOrder(){
         //Access Order counter, add one, assign to orderId, call WriteToDatabase()
-        orderId = Integer.toString(localDatabase.access().orders.size());
+        orderId = Integer.toString(getInformation.getInstance().getNumOrders() + 1);
         write_to_database();
     }
 

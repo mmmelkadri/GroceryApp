@@ -9,13 +9,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 // Mohamad El Kadri
-public class ProductActivity extends AppCompatActivity {
-    private String user_ID;
+public class ProductActivity extends AppCompatActivity implements Serializable {
+    Order order;
     private Product product;
 
     @Override
@@ -25,9 +26,11 @@ public class ProductActivity extends AppCompatActivity {
 
         // receive Intent itemID, read item name, brand and price
         Intent intent = getIntent();
+        Order order = (Order) intent.getSerializableExtra("ORDER");
 
-        // Receive product object
-        /*
+        String item_ID = (String) intent.getStringExtra("PRODUCT_ID");
+
+        ArrayList<String> product_info = getInformation.getInstance().getProduct(order.ownerID, item_ID);
 
         // Create a product object to add to the order
         product = new Product(item_ID,
@@ -38,7 +41,7 @@ public class ProductActivity extends AppCompatActivity {
         itemName.setText(product.product_Id);
 
         TextView itemBrand = (TextView) findViewById(R.id.itemBrand);
-        itemName.setText(product.brand);*/
+        itemName.setText(product.brand);
     }
 
     public void addToCart(View view) {
@@ -55,7 +58,7 @@ public class ProductActivity extends AppCompatActivity {
             Toast toast = Toast.makeText(getApplicationContext(), error, Toast.LENGTH_SHORT);
         } else {
             //add to users cart
-            //order.addToOrder(product, num);
+            order.add_to_order(product, num);
             //return to store page
             finish();
         }

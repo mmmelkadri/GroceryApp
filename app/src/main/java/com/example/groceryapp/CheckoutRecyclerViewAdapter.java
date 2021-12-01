@@ -19,7 +19,6 @@ public class CheckoutRecyclerViewAdapter extends RecyclerView.Adapter<CheckoutRe
 
     // Holds the data for our buttons
     private ArrayList<ArrayList<String>> products;
-
     private Context mContext;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

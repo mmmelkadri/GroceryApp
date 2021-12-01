@@ -1,5 +1,7 @@
 package com.example.groceryapp;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 
 import com.google.firebase.database.DataSnapshot;
@@ -21,6 +23,7 @@ public class Reader {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 dataSnapshot = snapshot;
+                Log.d("Reader: ", "Set DataSnapshot");
             }
 
             @Override
@@ -36,11 +39,13 @@ public class Reader {
         return read;
     }
 
+    // Should be called anytime that the database is changed and we need the data for further operation
     public void updateDataSnapshot() {
         FirebaseDatabase.getInstance().getReference().addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 dataSnapshot = snapshot;
+                Log.d("Reader: ", "Updated DataSnapshot");
             }
 
             @Override

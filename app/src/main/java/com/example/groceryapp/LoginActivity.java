@@ -43,15 +43,10 @@ public class LoginActivity extends AppCompatActivity {
                         ("Missing fields, please complete all the required fields");
             }
 
-            boolean user_found = false;
+            if (getInformation.getInstance().getAllUsers(getInformation.ownerKey).contains(username)) {
+                String owner_password = getInformation.getInstance().getPassword(getInformation.ownerKey, username);
 
-            // Check if username is already in localDatabase
-            if (localDatabase.access().getOwner(username) != null) {
-                user_found = true;
-            }
-
-            if (user_found) {
-                if (localDatabase.access().getOwner(username).equals(password)) {
+                if (owner_password.equals(password)) {
                     Intent intent = new Intent(this, PersonalStoreActivity.class)
                             .putExtra("username_key", username);
                     startActivity(intent);
@@ -60,11 +55,11 @@ public class LoginActivity extends AppCompatActivity {
                             ("Invalid Password");
                 }
             } else {
-                throw new IllegalArgumentException
-                        ("Invalid Username");
+                throw new IllegalArgumentException("Invalid Username");
             }
         }
         catch(Exception e){
+            Log.d("Here: ", "no wonder");
             Toast.makeText(LoginActivity.this, e.toString(), Toast.LENGTH_SHORT).show();
         }
 
@@ -84,13 +79,14 @@ public class LoginActivity extends AppCompatActivity {
 
             boolean user_found = false;
 
-            // Check if username is already in localDatabase
-            if (localDatabase.access().getCustomer(username) != null) {
+            // Check if username is already in database
+            if (getInformation.getInstance().getAllUsers(getInformation.customerKey).contains(username)) {
                 user_found = true;
             }
 
             if (user_found) {
-                if (localDatabase.access().getCustomer(username).equals(password)) {
+                String customer_password = getInformation.getInstance().getPassword(getInformation.customerKey, username);
+                if (customer_password.equals(password)) {
                     Intent intent = new Intent(this, AllStorePageActivity.class)
                             .putExtra("username_key", username);
                     startActivity(intent);

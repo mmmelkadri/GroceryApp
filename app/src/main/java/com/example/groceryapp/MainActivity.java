@@ -23,14 +23,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Reader.getInstance().updateDataSnapshot();
+
+        Reader.getInstance();
 
         // login delay
         new Timer().schedule(new TimerTask(){
             public void run() {
                 MainActivity.this.runOnUiThread(new Runnable() {
                     public void run() {
-                        localDatabase.access();
                         startActivity(new Intent(MainActivity.this, LoginActivity.class));
                     }
                 });

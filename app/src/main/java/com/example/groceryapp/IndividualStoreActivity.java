@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.google.firebase.database.DataSnapshot;
 
 import java.io.Serializable;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class IndividualStoreActivity extends AppCompatActivity {
@@ -25,7 +26,7 @@ public class IndividualStoreActivity extends AppCompatActivity {
         String customer_id = intent.getStringExtra("CUSTOMER_ID");
         String owner_id = intent.getStringExtra("OWNER_ID");
         cart = new Order(customer_id, owner_id);
-        String store_name = localDatabase.access().getOwner(owner_id).display_name;
+        String store_name = getInformation.getInstance().getStoreName(owner_id);
         TextView storeName = findViewById(R.id.textViewStoreName);
         storeName.setText(store_name);
     }
@@ -45,7 +46,14 @@ public class IndividualStoreActivity extends AppCompatActivity {
         String price_total = "$" + total;
         cartPrice.setText(price_total);
 
-        ArrayList<Product> products = localDatabase.access().getOwner(owner_id).products;
+        ArrayList<ArrayList<String>> temp = getInformation.getInstance().getAllProducts(owner_id);
+        ArrayList<Product> products = new ArrayList<>();
+
+        for (ArrayList<String> product : temp) {
+            Product tmp = new Product(product.get(0), product.get(2), product.get(1));
+            products.add(tmp);
+        }
+
         IndividualStoreProductAdapter adapter = new IndividualStoreProductAdapter(this, products);
         ListView listView = (ListView) findViewById(R.id.productsListView);
         listView.setAdapter(adapter);

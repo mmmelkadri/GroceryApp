@@ -11,7 +11,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 public class AllStorePageActivity extends AppCompatActivity {
-    ArrayList<Object> owner_list = localDatabase.access().getUserIDs(getInformation.ownerKey);
+    ArrayList<Object> owner_list = getInformation.getInstance().getAllUsers(getInformation.ownerKey);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

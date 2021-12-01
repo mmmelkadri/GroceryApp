@@ -23,7 +23,8 @@ public class Customer extends User{
             throw new IllegalArgumentException("Missing fields, please complete all the required fields");
         }
 
-        if(localDatabase.access().getCustomer(username) != null){
+        // check if .contains will find String and Object as equal
+        if(getInformation.getInstance().getAllUsers(getInformation.customerKey).contains(username)){
             throw new IllegalArgumentException("This username is already in use, please change your username");
         }
 
@@ -31,8 +32,8 @@ public class Customer extends User{
         mDatabase.child("Customers").child(username).child("Public Name").setValue(this.display_name);
         mDatabase.child("Customers").child(username).child("Password").setValue(this.password);
     }
-    /*
-    public ArrayList<ArrayList<String>> getOrders(String user_ID) {
+
+    /*public ArrayList<ArrayList<String>> getOrders(String user_ID) {
         return getInformation.getInstance().getOrders(user_ID, getInformation.customerIDKey);
     }*/
 }
