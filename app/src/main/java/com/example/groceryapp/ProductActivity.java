@@ -27,6 +27,7 @@ public class ProductActivity extends AppCompatActivity {
         Intent intent = getIntent();
 
         // Receive product object
+        /*
 
         // Create a product object to add to the order
         product = new Product(item_ID,
@@ -37,7 +38,7 @@ public class ProductActivity extends AppCompatActivity {
         itemName.setText(product.product_Id);
 
         TextView itemBrand = (TextView) findViewById(R.id.itemBrand);
-        itemName.setText(product.brand);
+        itemName.setText(product.brand);*/
     }
 
     public void addToCart(View view) {

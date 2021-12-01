@@ -25,7 +25,6 @@ public class Order  {
     public void add_to_order(Product product, String quantity){
         ArrayList<String> product_spec = new ArrayList<String>();
         product_spec.add(product.product_Id);
-        product_spec.add(product.product_name);
         product_spec.add(product.brand);
         product_spec.add(product.price);
         product_spec.add(quantity);
@@ -41,7 +40,7 @@ public class Order  {
             status = false;
         }
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-        String status = Reader.getInstance().readValue("users", ownerID, "orders", orderid, "state");
+        String status = localDatabase.access().getOrder(orderid).get(0).get(2);
         if (status.equals("incomplete")) {
             mDatabase.child("users").child(ownerID).child("orders").child(orderid).child("state").setValue("complete");
             mDatabase.child("users").child(customerId).child("orders").child(orderid).child("state").setValue("complete");
@@ -54,17 +53,9 @@ public class Order  {
         }
     }
 
-    public void checkoutOrder(String orderid){
+    public void checkoutOrder(){
         //Access Order counter, add one, assign to orderId, call WriteToDatabase()
-        int i = 0;
-        while (true) {
-            ArrayList<Object> list = getInformation.getInstance().getOrderInformation(Integer.toString(Integer.valueOf(i)));
-            if(list == null) {
-                break;
-            }
-            i++;
-        }
-        orderId = Integer.toString(Integer.valueOf(i));
+        orderId = Integer.toString(localDatabase.access().orders.size());
         write_to_database();
     }
 
@@ -81,6 +72,9 @@ public class Order  {
         mDatabase.child("orders").child(orderId).child("state").setValue("incomplete");
         mDatabase.child("orders").child(orderId).child("customerId").setValue(customerId);
         mDatabase.child("orders").child(orderId).child("ownerId").setValue(ownerID);
+
+        // Also add to localDatabase
+        // *************************
 
         int j=0;
         for(ArrayList<String> i: products_and_quantity){

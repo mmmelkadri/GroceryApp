@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -24,7 +25,10 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void SignUpButton (View view){
+        localDatabase.access();
+
         Intent intent = new Intent(this, SignUpActivity.class);
+
         startActivity(intent);
     }
 
@@ -41,19 +45,15 @@ public class LoginActivity extends AppCompatActivity {
                         ("Missing fields, please complete all the required fields");
             }
 
-            ArrayList<Object> all_users = getInformation.getInstance().getAllUsers(getInformation.ownerKey);
             boolean user_found = false;
-            for (Object i : all_users) {
-                if (username.equals(i)) {
-                    user_found = true;
-                    break;
-                }
+
+            // Check if username is already in localDatabase
+            if (localDatabase.access().getOwner(username) != null) {
+                user_found = true;
             }
 
             if (user_found) {
-                DataSnapshot password_snap = Reader.getInstance()
-                        .readSnapshot(getInformation.ownerKey, username, "password");
-                if (password_snap.getValue().toString().equals(password)) {
+                if (localDatabase.access().getOwner(username).equals(password)) {
                     Intent intent = new Intent(this, PersonalStoreActivity.class)
                             .putExtra("username_key", username);
                     startActivity(intent);
@@ -84,20 +84,15 @@ public class LoginActivity extends AppCompatActivity {
                         ("Missing fields, please complete all the required fields");
             }
 
-            ArrayList<Object> all_users = getInformation.getInstance()
-                    .getAllUsers(getInformation.customerKey);
             boolean user_found = false;
-            for (Object i : all_users) {
-                if (username.equals(i)) {
-                    user_found = true;
-                    break;
-                }
+
+            // Check if username is already in localDatabase
+            if (localDatabase.access().getCustomer(username) != null) {
+                user_found = true;
             }
 
             if (user_found) {
-                DataSnapshot password_snap = Reader.getInstance()
-                        .readSnapshot(getInformation.customerKey, username, "password");
-                if (password_snap.getValue().toString().equals(password)) {
+                if (localDatabase.access().getCustomer(username).equals(password)) {
                     Intent intent = new Intent(this, AllStorePageActivity.class)
                             .putExtra("username_key", username);
                     startActivity(intent);

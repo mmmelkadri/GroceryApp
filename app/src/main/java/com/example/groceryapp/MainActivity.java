@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.util.Log;
 
 
 import com.google.android.gms.tasks.Task;
@@ -23,15 +24,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // MUST be called ahead of delay, since .get() is asynchronous
-        getSnapshot snapshot = new getSnapshot();
 
         // login delay
         new Timer().schedule(new TimerTask(){
             public void run() {
                 MainActivity.this.runOnUiThread(new Runnable() {
                     public void run() {
-                        localDatabase.access().setSnapshot(snapshot.dataSnapshot);
+                        getSnapshot.snapshot.updateDataSnapshot();
                         startActivity(new Intent(MainActivity.this, LoginActivity.class));
                     }
                 });

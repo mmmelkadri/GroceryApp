@@ -22,17 +22,17 @@ public class Customer extends User{
         if (username.equals("")||password.equals("")||display_name.equals("")){
             throw new IllegalArgumentException("Missing fields, please complete all the required fields");
         }
-        ArrayList<Object> all_users = getInformation.getInstance().getAllUsers(getInformation.customerKey);
-        for(Object i:all_users){
-            if(username.equals(i)){
-                throw new IllegalArgumentException("This username is already in use, please change your username");
-            }
+
+        if(localDatabase.access().getCustomer(username) != null){
+            throw new IllegalArgumentException("This username is already in use, please change your username");
         }
+
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
         mDatabase.child("Customers").child(username).child("Public Name").setValue(this.display_name);
         mDatabase.child("Customers").child(username).child("Password").setValue(this.password);
     }
+    /*
     public ArrayList<ArrayList<String>> getOrders(String user_ID) {
         return getInformation.getInstance().getOrders(user_ID, getInformation.customerIDKey);
-    }
+    }*/
 }

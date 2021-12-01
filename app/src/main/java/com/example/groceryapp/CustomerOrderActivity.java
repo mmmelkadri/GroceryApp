@@ -15,10 +15,10 @@ public class CustomerOrderActivity extends AppCompatActivity {
         setContentView(R.layout.activity_customer_order);
 
         // Receive customer_id and store_name
+        /*
+        ArrayList<ArrayList<String>> orders = getInformation.getInstance().getOrders(user_ID, getInformation.customerIDKey);
 
-        /*ArrayList<ArrayList<String>> orders = getInformation.getInstance().getOrders(user_ID, getInformation.customerIDKey);
-
-        // Read users cart and add buttons to the scroll layout
+        // Read users orders and add buttons to the scroll layout
         RecyclerView recyclerView = findViewById(R.id.rvOrders);
 
         CheckoutRecyclerViewAdapter adapter = new CheckoutRecyclerViewAdapter(this, store_name, orders);

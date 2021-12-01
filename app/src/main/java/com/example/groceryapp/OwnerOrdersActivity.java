@@ -12,6 +12,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 public class OwnerOrdersActivity extends AppCompatActivity {
+    /*
     ListView listView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,5 +36,5 @@ public class OwnerOrdersActivity extends AppCompatActivity {
                     startActivity(intent_next);
                 }
         });
-    }
+    }*/
 }

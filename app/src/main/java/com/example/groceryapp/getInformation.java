@@ -4,6 +4,7 @@ import android.provider.ContactsContract;
 
 import com.google.firebase.database.DataSnapshot;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 // Mohamad El Kadri
@@ -36,6 +37,11 @@ public class getInformation {
     public static final String ownerIDKey = "owner_id";
     public static final String ownerKey = "Owners";
     public static final String customerKey = "Customers";
+
+    /***************************************************
+     * Should only be used in localDatabase for init
+     * since dataSnapshot is not refreshed
+     * ************************************************/
 
     public getInformation(DataSnapshot dataSnapshot) {
         this.dataSnapshot = dataSnapshot;
@@ -118,24 +124,6 @@ public class getInformation {
         return productInformation;
     }
 
-    public ArrayList<String> getOrderInformation(String order_ID) {
-        // Returns {CustomerID, OwnerID, {{productID1, quantity}, {productID2, quantity} ... }, state}
-        ArrayList<String> orderInformation = new ArrayList<>();
-        DataSnapshot order = Reader.getInstance().readSnapshot(dataSnapshot, orderKey, order_ID);
-
-        if (order == null)
-            return null;
-
-        // Add first two elements
-        orderInformation.add(order.child(customerIDKey).getValue(String.class));
-        orderInformation.add(order.child(ownerIDKey).getValue(String.class));
-
-        orderInformation.add(getProductInformation(order_ID));
-        orderInformation.add(order.child(stateKey).getValue(String.class));
-
-        return orderInformation;
-    }
-
     public ArrayList<String> getPasswordAndDisplay(String owner_or_customerKey, String IDKey) {
         // Returns {password, display_name}
         ArrayList<String> display_and_password = new ArrayList<>();
@@ -148,6 +136,37 @@ public class getInformation {
         display_and_password.add(snap.child(displayNameKey).getValue(String.class));
 
         return display_and_password;
+    }
+
+    public ArrayList<ArrayList<ArrayList<String>>> getAllOrders() {
+        // Returns {{{OrderID1, customerID1, ownerID1}, {productID1, productQuantity1}, {productID2, productQuantity2}...}, ...}
+        ArrayList<ArrayList<ArrayList<String>>> allOrders = new ArrayList<>();
+
+        DataSnapshot orders = Reader.getInstance().readSnapshot(dataSnapshot, orderKey);
+
+        for (DataSnapshot order : orders.getChildren()) {
+            ArrayList<ArrayList<String>> temp = new ArrayList<>();
+
+            ArrayList<String> orderInfo = new ArrayList<>();
+            orderInfo.add(order.getKey());
+            orderInfo.add(order.child(customerIDKey).getValue(String.class));
+            orderInfo.add(order.child(ownerIDKey).getValue(String.class));
+
+            temp.add(orderInfo);
+
+            for (DataSnapshot product : order.child(productKey).getChildren()) {
+                ArrayList<String> item = new ArrayList<>();
+
+                item.add(product.child(productIDKey).getValue(String.class));
+                item.add(product.child(quantity).getValue(String.class));
+
+                temp.add(item);
+            }
+
+            allOrders.add(temp);
+        }
+
+        return allOrders;
     }
 
     public ArrayList<String> getAllUsers(String owner_or_customerKey) {

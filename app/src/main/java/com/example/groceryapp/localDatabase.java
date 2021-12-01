@@ -2,33 +2,35 @@ package com.example.groceryapp;
 
 import com.google.firebase.database.DataSnapshot;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
+// Mohamad El Kadri
 public class localDatabase {
     // Must be set
     public DataSnapshot dataSnapshot;
 
-    private ArrayList<Owner> owners;
-    private ArrayList<Customer> customers;
+    public ArrayList<Owner> owners;
+    public ArrayList<Customer> customers;
+    public ArrayList<ArrayList<ArrayList<String>>> orders;
+
     private static localDatabase local;
 
     private localDatabase() {
-        owners = setOwners();
-        customers = setCustomers();
+        this.dataSnapshot = getSnapshot.snapshot.dataSnapshot;
+        setOwners();
+        setCustomers();
+        setOrders();
     }
 
-    // MUST be called in main activity
-    public void setSnapshot(DataSnapshot dataSnapshot) {
-        this.dataSnapshot = dataSnapshot;
-    }
-
+    // Only call after snapshot.dataSnapshot has been initialized
     public static localDatabase access() {
         if (local == null)
             local = new localDatabase();
         return local;
     }
 
-    private ArrayList<Owner> setOwners() {
+    private void setOwners() {
         getInformation info = new getInformation(dataSnapshot);
         ArrayList<String> ownerIDs = info.getAllUsers(info.ownerKey);
 
@@ -57,7 +59,7 @@ public class localDatabase {
         }
     }
 
-    private ArrayList<Customer> setCustomers() {
+    private void setCustomers() {
         getInformation info = new getInformation(dataSnapshot);
         ArrayList<String> customerIDs = info.getAllUsers(info.customerKey);
 
@@ -72,5 +74,55 @@ public class localDatabase {
 
             customers.add(temp);
         }
+    }
+
+    public void setOrders() {
+        getInformation info = new getInformation(dataSnapshot);
+        orders = info.getAllOrders();
+    }
+
+    public Customer getCustomer(String userID) {
+        for (Customer customer : customers) {
+            if (customer.username == userID)
+                return customer;
+        }
+
+        return null;
+    }
+
+    public Owner getOwner(String userID) {
+        for (Owner owner : owners) {
+            if (owner.username.equals(userID))
+                return owner;
+        }
+
+        return null;
+    }
+
+    public ArrayList<ArrayList<String>> getOrder(String orderID) {
+        for (ArrayList<ArrayList<String>> order : orders) {
+            if (order.get(0).get(0).equals(orderID)) {
+                return order;
+            }
+        }
+
+        return null;
+    }
+
+    // Functions that might or might not be used. Delete if not used in app
+    public ArrayList<Object> getUserIDs(String customer_or_userKey) {
+        ArrayList<Object> user_ids = new ArrayList<>();
+
+        if (customer_or_userKey.equals(getInformation.customerKey)) {
+            for (Customer customer : customers) {
+                user_ids.add(customer.username);
+            }
+        } else {
+            for (Owner owner : owners) {
+                user_ids.add(owner.username);
+            }
+        }
+
+        return user_ids;
     }
 }

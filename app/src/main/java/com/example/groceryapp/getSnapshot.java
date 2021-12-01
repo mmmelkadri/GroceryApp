@@ -1,5 +1,7 @@
 package com.example.groceryapp;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -9,6 +11,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class getSnapshot {
+    public static getSnapshot snapshot = new getSnapshot();
     DatabaseReference mDatabase;
     DataSnapshot dataSnapshot;
 
@@ -16,14 +19,13 @@ public class getSnapshot {
         mDatabase = FirebaseDatabase.getInstance().getReference();
     }
 
-    public DataSnapshot getDataSnapshot() {
+    public void updateDataSnapshot() {
         mDatabase.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
-                dataSnapshot = task.getResult();
+                Log.d("DONE", "DONE");
+                snapshot.dataSnapshot = task.getResult();
             }
         });
-
-        return dataSnapshot;
     }
 }
