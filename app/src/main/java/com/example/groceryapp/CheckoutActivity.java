@@ -35,9 +35,6 @@ public class CheckoutActivity extends AppCompatActivity implements Serializable 
     }
 
     public void checkoutButton(View view) {
-        cart.checkoutOrder();
-
-        // Update datasnapshot
-        Reader.getInstance().updateDataSnapshot();
+        cart.checkoutOrder();;
     }
 }

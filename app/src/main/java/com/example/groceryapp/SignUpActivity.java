@@ -40,9 +40,6 @@ public class SignUpActivity extends AppCompatActivity {
                 customer.writeToDatabase();
             }
 
-            // Update datasnapshot
-            Reader.getInstance().updateDataSnapshot();
-
             Toast.makeText(SignUpActivity.this, "Account Successfully added", Toast.LENGTH_SHORT).show();
         }
         catch(Exception e){

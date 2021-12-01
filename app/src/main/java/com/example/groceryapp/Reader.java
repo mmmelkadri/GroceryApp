@@ -24,7 +24,7 @@ public class Reader {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 dataSnapshot = snapshot;
-                Log.d("Reader: ", "Set DataSnapshot");
+                Log.d("Reader: ", "Updated DataSnapshot");
             }
 
             @Override
@@ -38,22 +38,6 @@ public class Reader {
         if (read == null)
             read = new Reader();
         return read;
-    }
-
-    // Should be called anytime that the database is changed and we need the data for further operation
-    public void updateDataSnapshot() {
-        FirebaseDatabase.getInstance().getReference().addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                dataSnapshot = snapshot;
-                Log.d("Reader: ", "Updated DataSnapshot");
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                throw error.toException();
-            }
-        });
     }
 
     public String readValue(String... args) {
