@@ -9,14 +9,14 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 //TODO: Change to adapt Products
-public class PendingOrderProductAdapter extends ArrayAdapter<Object> {
-    public PendingOrderProductAdapter(Context context, ArrayList<Object> list) {
+public class PendingOrderProductAdapter extends ArrayAdapter<ArrayList<String>> {
+    public PendingOrderProductAdapter(Context context, ArrayList<ArrayList<String>> list) {
         super(context, 0, list);
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        ArrayList<String> obj = (ArrayList<String>) getItem(position);
+        ArrayList<String> obj = getItem(position);
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.pending_orders_list_view, parent, false);
         }
