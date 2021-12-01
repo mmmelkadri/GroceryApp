@@ -40,6 +40,12 @@
             android:name=".ProductActivity"
             android:exported="false" />
         <activity
+            android:name=".OwnerOrdersActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CreateNewItem"
+            android:exported="false" />
+        <activity
             android:name=".LoginActivity"
             android:exported="false" />
         <activity

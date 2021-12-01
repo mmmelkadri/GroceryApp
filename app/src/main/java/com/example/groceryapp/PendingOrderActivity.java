@@ -1,13 +1,11 @@
 package com.example.groceryapp;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.CheckBox;
 import android.widget.ListView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.database.DataSnapshot;
 
@@ -44,7 +42,6 @@ public class PendingOrderActivity extends AppCompatActivity {
         Intent get_intent = getIntent();
         String order_id = get_intent.getStringExtra("ORDER_ID");
 
-        DataSnapshot dataSnapshot = Reader.getInstance().dataSnapshot;
         String customerid = Reader.getInstance().readValue("order", order_id, "customer_id");
         String ownerid = Reader.getInstance().readValue("order", order_id, "owner_id");
         Order order = new Order(customerid, ownerid);

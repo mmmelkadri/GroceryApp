@@ -1,16 +1,12 @@
 package com.example.groceryapp;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.google.firebase.database.DataSnapshot;
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.Serializable;
 import java.lang.reflect.Array;
