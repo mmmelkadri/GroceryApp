@@ -139,7 +139,8 @@ public class getInformation {
 
     public String getPassword(String owner_or_customerKey, String IDKey) {
         // Returns password
-        return Reader.getInstance().readValue(owner_or_customerKey, IDKey, passwordKey);
+        String password = Reader.getInstance().readValue(owner_or_customerKey, IDKey, passwordKey);
+        return password;
     }
 
     public ArrayList<ArrayList<ArrayList<String>>> getAllOrders() {
@@ -184,7 +185,8 @@ public class getInformation {
 
         for (DataSnapshot user : users.getChildren()) {
             Log.d("User: ", user.getKey());
-            userInformation.add(user.getKey());
+            if (user.getKey() != null)
+                userInformation.add(user.getKey());
         }
 
         return userInformation;

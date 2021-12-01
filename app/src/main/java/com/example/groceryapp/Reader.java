@@ -1,5 +1,6 @@
 package com.example.groceryapp;
 
+import android.provider.ContactsContract;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -57,29 +58,31 @@ public class Reader {
 
     public String readValue(String... args) {
         // Pass in keys path from mDatabase root to get value
+        DataSnapshot temp = dataSnapshot;
 
         for (String arg : args) {
             // if the child does not exist, return empty string
-            if (dataSnapshot.child(arg) == null)
+            if (temp.child(arg) == null)
                 return "";
 
-            dataSnapshot = dataSnapshot.child(arg);
+            temp = temp.child(arg);
         }
 
-        return (String) dataSnapshot.getValue(String.class);
+        return (String) temp.getValue(String.class);
     }
 
     public DataSnapshot readSnapshot(String... args) {
         // Pass in keys path from mDatabase root to get snapshot at final key
+        DataSnapshot temp = dataSnapshot;
 
         for (String arg : args) {
             // if the child does not exist, return null
-            if (dataSnapshot.child(arg) == null)
+            if (temp.child(arg) == null)
                 return null;
 
-            dataSnapshot = dataSnapshot.child(arg);
+            temp = temp.child(arg);
         }
 
-        return dataSnapshot;
+        return temp;
     }
 }

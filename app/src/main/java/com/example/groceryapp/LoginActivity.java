@@ -43,7 +43,9 @@ public class LoginActivity extends AppCompatActivity {
                         ("Missing fields, please complete all the required fields");
             }
 
-            if (getInformation.getInstance().getAllUsers(getInformation.ownerKey).contains(username)) {
+            ArrayList<Object> allOwners = getInformation.getInstance().getAllUsers(getInformation.ownerKey);
+
+            if (allOwners.contains(username)) {
                 String owner_password = getInformation.getInstance().getPassword(getInformation.ownerKey, username);
 
                 if (owner_password.equals(password)) {
@@ -59,7 +61,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         }
         catch(Exception e){
-            Log.d("Here: ", "no wonder");
             Toast.makeText(LoginActivity.this, e.toString(), Toast.LENGTH_SHORT).show();
         }
 
@@ -77,14 +78,9 @@ public class LoginActivity extends AppCompatActivity {
                         ("Missing fields, please complete all the required fields");
             }
 
-            boolean user_found = false;
+            ArrayList<Object> allCustomers = getInformation.getInstance().getAllUsers(getInformation.customerKey);
 
-            // Check if username is already in database
-            if (getInformation.getInstance().getAllUsers(getInformation.customerKey).contains(username)) {
-                user_found = true;
-            }
-
-            if (user_found) {
+            if (allCustomers.contains(username)) {
                 String customer_password = getInformation.getInstance().getPassword(getInformation.customerKey, username);
                 if (customer_password.equals(password)) {
                     Intent intent = new Intent(this, AllStorePageActivity.class)
