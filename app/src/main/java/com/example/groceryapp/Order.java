@@ -42,14 +42,14 @@ public class Order  {
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
         String status = getInformation.getInstance().getState(orderid);
         if (status.equals("Incomplete")) {
-            mDatabase.child("users").child(ownerID).child("orders").child(orderid).child("state").setValue("Complete");
-            mDatabase.child("users").child(customerId).child("orders").child(orderid).child("state").setValue("Complete");
-            mDatabase.child("orders").child(orderid).child("state").setValue("Complete");
+            mDatabase.child("Owners").child(ownerID).child("Orders").child(orderid).child("state").setValue("Complete");
+            mDatabase.child("Customers").child(customerId).child("Orders").child(orderid).child("state").setValue("Complete");
+            mDatabase.child("Orders").child(orderid).child("state").setValue("Complete");
         }
         else if (status.equals("Complete")) {
-            mDatabase.child("users").child(ownerID).child("orders").child(orderid).child("state").setValue("Incomplete");
-            mDatabase.child("users").child(customerId).child("orders").child(orderid).child("state").setValue("Incomplete");
-            mDatabase.child("orders").child(orderid).child("state").setValue("Incomplete");
+            mDatabase.child("Owners").child(ownerID).child("Orders").child(orderid).child("state").setValue("Incomplete");
+            mDatabase.child("Customers").child(customerId).child("Orders").child(orderid).child("state").setValue("Incomplete");
+            mDatabase.child("Orders").child(orderid).child("state").setValue("Incomplete");
         }
     }
 
@@ -61,24 +61,21 @@ public class Order  {
 
     public void write_to_database(){
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-        mDatabase.child("users").child(ownerID).child("orders").child(orderId).child("state").setValue("incomplete");
-        mDatabase.child("users").child(ownerID).child("orders").child(orderId).child("customerId").setValue(customerId);
-        mDatabase.child("users").child(ownerID).child("orders").child(orderId).child("ownerId").setValue(ownerID);
+        mDatabase.child("Owners").child(ownerID).child("Orders").child(orderId).child("state").setValue("Incomplete");
+        mDatabase.child("Owners").child(ownerID).child("Orders").child(orderId).child("customerId").setValue(customerId);
+        mDatabase.child("Owners").child(ownerID).child("Orders").child(orderId).child("ownerId").setValue(ownerID);
 
-        mDatabase.child("users").child(customerId).child("orders").child(orderId).child("state").setValue("incomplete");
-        mDatabase.child("users").child(customerId).child("orders").child(orderId).child("customerId").setValue(customerId);
-        mDatabase.child("users").child(customerId).child("orders").child(orderId).child("ownerId").setValue(ownerID);
+        mDatabase.child("Customers").child(customerId).child("Orders").child(orderId).child("state").setValue("Incomplete");
+        mDatabase.child("Customers").child(customerId).child("Orders").child(orderId).child("customerId").setValue(customerId);
+        mDatabase.child("Customers").child(customerId).child("Orders").child(orderId).child("ownerId").setValue(ownerID);
 
-        mDatabase.child("orders").child(orderId).child("state").setValue("incomplete");
-        mDatabase.child("orders").child(orderId).child("customerId").setValue(customerId);
-        mDatabase.child("orders").child(orderId).child("ownerId").setValue(ownerID);
-
-        // Also add to localDatabase
-        // *************************
+        mDatabase.child("Orders").child(orderId).child("state").setValue("Incomplete");
+        mDatabase.child("Orders").child(orderId).child("customerId").setValue(customerId);
+        mDatabase.child("Orders").child(orderId).child("ownerId").setValue(ownerID);
 
         int j=0;
         for(ArrayList<String> i: products_and_quantity){
-            mDatabase.child("orders").child(orderId).child("products").child(Integer.toString(j))
+            mDatabase.child("Orders").child(orderId).child("Products").child(Integer.toString(j))
                     .child("product_id").setValue(i.get(PRODUCT_ID));
             j++;
         }
