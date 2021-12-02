@@ -20,8 +20,6 @@ public class CustomerOrderRecyclerViewAdapter extends RecyclerView.Adapter<Custo
 
     // Holds the data for our buttons
     private ArrayList<ArrayList<String>> orders;
-    private String storeName;
-
     private Context mContext;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -44,9 +42,8 @@ public class CustomerOrderRecyclerViewAdapter extends RecyclerView.Adapter<Custo
     }
 
     // initializes our button data
-    public CustomerOrderRecyclerViewAdapter(Context context, String store_name, ArrayList<ArrayList<String>> orders) {
+    public CustomerOrderRecyclerViewAdapter(Context context, ArrayList<ArrayList<String>> orders) {
         mContext = context;
-        this.storeName = store_name;
         this.orders = orders;
     }
 
@@ -68,8 +65,11 @@ public class CustomerOrderRecyclerViewAdapter extends RecyclerView.Adapter<Custo
         Log.d(TAG, "adapter: " + index);
 
         // Set the viewHolders text at each position in orders
-        viewHolder.storeName.setText(String.valueOf(storeName));
-        viewHolder.orderID.setText(String.valueOf(orders.get(index).get(0)));
+        String order_id = String.valueOf(orders.get(index).get(0));
+        String owner_id = getInformation.getInstance().getOrderOwner(order_id);
+
+        viewHolder.storeName.setText(getInformation.getInstance().getStoreName(owner_id));
+        viewHolder.orderID.setText(order_id);
 
         String completion_status = String.valueOf(orders.get(index).get(1));
         // Set colour depending on completion status
