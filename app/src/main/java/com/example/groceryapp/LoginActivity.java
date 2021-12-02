@@ -50,7 +50,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 if (owner_password.equals(password)) {
                     Intent intent = new Intent(this, PersonalStoreActivity.class)
-                            .putExtra("username_key", username);
+                            .putExtra("owner_Id", username);
                     startActivity(intent);
                 } else {
                     throw new IllegalArgumentException
@@ -84,7 +84,7 @@ public class LoginActivity extends AppCompatActivity {
                 String customer_password = getInformation.getInstance().getPassword(getInformation.customerKey, username);
                 if (customer_password.equals(password)) {
                     Intent intent = new Intent(this, AllStorePageActivity.class)
-                            .putExtra("username_key", username);
+                            .putExtra("cust_Id", username);
                     startActivity(intent);
                 } else {
                     throw new IllegalArgumentException
