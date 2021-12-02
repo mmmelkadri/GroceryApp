@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -23,7 +24,7 @@ public class OwnerOrdersActivity extends AppCompatActivity {
         String USER_ID = get_intent.getStringExtra("USER_ID");
 
         listView=(ListView)findViewById(R.id.OwnerOderListView);
-        ArrayList<ArrayList<String>> arrayList = getInformation.getInstance().getOrders(USER_ID,getInformation.ownerKey);
+        ArrayList<ArrayList<String>> arrayList = getInformation.getInstance().getOwnerOrders(USER_ID,getInformation.ownerKey);
 
         OwnerOrderBaaseAdaptor arrayAdapter = new OwnerOrderBaaseAdaptor(this,arrayList);
         listView.setAdapter(arrayAdapter);
