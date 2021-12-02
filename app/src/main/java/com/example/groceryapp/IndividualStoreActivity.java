@@ -19,8 +19,8 @@ public class IndividualStoreActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_individual_store);
         Intent intent = getIntent();
-        String customer_id = intent.getStringExtra("CUSTOMER_ID");
-        String owner_id = intent.getStringExtra("OWNER_ID");
+        String customer_id = intent.getStringExtra("cust_Id");
+        String owner_id = intent.getStringExtra("owner_Id");
         cart = new Order(customer_id, owner_id);
         String store_name = getInformation.getInstance().getStoreName(owner_id);
         TextView storeName = findViewById(R.id.textViewStoreName);
@@ -33,7 +33,7 @@ public class IndividualStoreActivity extends AppCompatActivity {
         Intent intent = getIntent();
 
         ArrayList<ArrayList<String>> productList = cart.products_and_quantity;
-        String owner_id = intent.getStringExtra("OWNER_ID");
+        String owner_id = intent.getStringExtra("owner_Id");
         float total = 0;
         for (int i = 0; i < productList.size(); i++) {
             total += Float.parseFloat(productList.get(i).get(1));
