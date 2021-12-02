@@ -21,7 +21,7 @@ public class OwnerOrdersActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_owner_orders);
         Intent get_intent = getIntent();
-        String USER_ID = get_intent.getStringExtra("USER_ID");
+        String USER_ID = get_intent.getStringExtra("owner_Id");
 
         listView=(ListView)findViewById(R.id.OwnerOderListView);
         ArrayList<ArrayList<String>> arrayList = getInformation.getInstance().getOwnerOrders(USER_ID,getInformation.ownerKey);
