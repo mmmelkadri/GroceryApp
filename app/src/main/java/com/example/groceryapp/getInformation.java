@@ -16,7 +16,7 @@ public class getInformation {
 
     private static getInformation info;
     // keywords
-    private static final String orderKey = "order";
+    private static final String orderKey = "orders";
     private static final String productKey = "products";
     private static final String stateKey = "state";
     private static final String quantity = "quantity";
@@ -24,7 +24,7 @@ public class getInformation {
     private static final String passwordKey = "Password";
     private static final String displayNameKey = "Public Name";
 
-    private static final String productListKey = "product_list";
+    private static final String productListKey = "Products";
 
     private static final String itemNameKey = "product name";
     private static final String itemBrandKey = "brand";
@@ -103,8 +103,7 @@ public class getInformation {
         // if provided owner id return {{itemName, itemBrand, itemPrice} ... }
         ArrayList<ArrayList<String>> items = new ArrayList<>();
 
-        DataSnapshot products = Reader.getInstance().readSnapshot(orderKey, owner_ID, productListKey);
-
+        DataSnapshot products = Reader.getInstance().readSnapshot(ownerKey, owner_ID, productListKey);
         for (DataSnapshot product : products.getChildren()) {
             ArrayList<String> item = new ArrayList<>();
 
@@ -207,7 +206,6 @@ public class getInformation {
 
         return "";
     }
-
     public ArrayList<ArrayList<String>> getOrders(String user_ID, String owner_or_customerIDKey) {
         // Returns {{OrderID1, state}, ...} if order owner/customer (depending on input) has same user_ID
         ArrayList<ArrayList<String>> storeInformation = new ArrayList<>();
@@ -226,6 +224,27 @@ public class getInformation {
             }
         }
 
+        return storeInformation;
+    }
+
+    public ArrayList<ArrayList<String>> getOwnerOrders(String user_ID, String owner_or_customerIDKey) {
+        // Returns {{OrderID1, state}, ...} if order owner/customer (depending on input) has same user_ID
+        ArrayList<ArrayList<String>> storeInformation = new ArrayList<>();
+        DataSnapshot orders = Reader.getInstance().readSnapshot(owner_or_customerIDKey, user_ID, orderKey);
+
+        if (orders == null){
+
+            return null;
+        }
+
+        for (DataSnapshot order : orders.getChildren()) {
+
+            ArrayList<String> temp = new ArrayList<>();
+            temp.add(order.getKey());
+            temp.add(order.child(stateKey).getValue(String.class));
+
+            storeInformation.add(temp);
+        }
         return storeInformation;
     }
 
