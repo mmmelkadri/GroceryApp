@@ -13,14 +13,20 @@ import java.util.ArrayList;
 public class AllStorePageActivity extends AppCompatActivity {
     ArrayList<Object> owner_list = getInformation.getInstance().getAllUsers(getInformation.ownerKey);
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ArrayList<Object> store_name_list = new ArrayList<Object>();
+        for(Object x : owner_list){
+            String store_name = getInformation.getInstance().getStoreName((String) x);
+            store_name_list.add(store_name);
+        }
         String customer_id = getIntent().getStringExtra("cust_Id");
         setContentView(R.layout.activity_all_store_page);
         ListView listView = (ListView) findViewById(R.id.Allstore_StoreList_ListView);
         AllstoreCustomAdapter AllstoreCustomAdapter = new
-                AllstoreCustomAdapter(getApplicationContext(), owner_list);
+                AllstoreCustomAdapter(getApplicationContext(), store_name_list);
         listView.setAdapter(AllstoreCustomAdapter);
         Intent intent = new Intent(this, IndividualStoreActivity.class);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
