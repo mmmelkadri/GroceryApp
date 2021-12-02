@@ -41,15 +41,15 @@ public class Order  {
         }
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
         String status = getInformation.getInstance().getState(orderid);
-        if (status.equals("incomplete")) {
-            mDatabase.child("users").child(ownerID).child("orders").child(orderid).child("state").setValue("complete");
-            mDatabase.child("users").child(customerId).child("orders").child(orderid).child("state").setValue("complete");
-            mDatabase.child("orders").child(orderid).child("state").setValue("complete");
+        if (status.equals("Incomplete")) {
+            mDatabase.child("users").child(ownerID).child("orders").child(orderid).child("state").setValue("Complete");
+            mDatabase.child("users").child(customerId).child("orders").child(orderid).child("state").setValue("Complete");
+            mDatabase.child("orders").child(orderid).child("state").setValue("Complete");
         }
-        else if (status.equals("complete")) {
-            mDatabase.child("users").child(ownerID).child("orders").child(orderid).child("state").setValue("incomplete");
-            mDatabase.child("users").child(customerId).child("orders").child(orderid).child("state").setValue("incomplete");
-            mDatabase.child("orders").child(orderid).child("state").setValue("incomplete");
+        else if (status.equals("Complete")) {
+            mDatabase.child("users").child(ownerID).child("orders").child(orderid).child("state").setValue("Incomplete");
+            mDatabase.child("users").child(customerId).child("orders").child(orderid).child("state").setValue("Incomplete");
+            mDatabase.child("orders").child(orderid).child("state").setValue("Incomplete");
         }
     }
 

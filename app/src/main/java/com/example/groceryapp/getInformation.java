@@ -55,7 +55,7 @@ public class getInformation {
         for (DataSnapshot store : stores.getChildren()) {
             String owner = store.child(displayNameKey).getValue(String.class);
 
-            if (owner == owner_ID)
+            if (store.getKey().equals(owner_ID))
                 return owner;
         }
 
