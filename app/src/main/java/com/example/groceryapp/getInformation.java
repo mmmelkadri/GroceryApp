@@ -53,10 +53,10 @@ public class getInformation {
             return null;
 
         for (DataSnapshot store : stores.getChildren()) {
-            Object owner = store.child(ownerIDKey).getValue(String.class);
+            String owner = store.child(displayNameKey).getValue(String.class);
 
-            if (owner instanceof String && owner == owner_ID)
-                return (String) owner;
+            if (store.getKey().equals(owner_ID))
+                return owner;
         }
 
         return "";
@@ -225,6 +225,19 @@ public class getInformation {
         }
 
         return storeInformation;
+    }
+
+    public String getOrderOwner(String orderID) {
+        // Returns ownerID of given orderID
+        DataSnapshot orders = Reader.getInstance().readSnapshot(orderKey);
+
+        for (DataSnapshot order : orders.getChildren()) {
+            if (order.getKey().equals(orderID)) {
+                return order.child(ownerIDKey).getValue(String.class);
+            }
+        }
+
+        return "";
     }
 
     public ArrayList<ArrayList<String>> getOwnerOrders(String user_ID, String owner_or_customerIDKey) {

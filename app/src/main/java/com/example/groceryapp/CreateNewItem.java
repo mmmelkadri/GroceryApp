@@ -30,7 +30,7 @@ public class CreateNewItem extends AppCompatActivity {
         String price_s = new_price.getText().toString();
 
         Intent get_intent = getIntent();
-        String USER_ID = get_intent.getStringExtra("USER_ID");
+        String USER_ID = get_intent.getStringExtra("owner_Id");
 
         try {
             Product product = new Product(name_s, price_s, brand_s);
