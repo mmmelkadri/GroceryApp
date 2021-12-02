@@ -27,7 +27,7 @@ public class Product {
         ArrayList<ArrayList<String>> all_products  = getInformation.getInstance().getAllProducts(user_ID);
         for(ArrayList<String> i: all_products){
             if (i.contains(product_Id)){
-                throw new IllegalArgumentException("This product is already in use, please change your username");
+                throw new IllegalArgumentException("This product is already in use, please change the product name");
             }
         }
 

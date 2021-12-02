@@ -26,7 +26,7 @@ public class PersonalStoreActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String owner_id = intent.getStringExtra("owner_Id");
         Intent send_intent = new Intent(this, OwnerOrdersActivity.class);
-        send_intent.putExtra("USER_ID", owner_id);
+        send_intent.putExtra("owner_Id", owner_id);
         startActivity(send_intent);
     }
 
@@ -34,7 +34,7 @@ public class PersonalStoreActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String owner_id = intent.getStringExtra("owner_Id");
         Intent send_intent = new Intent(this, CreateNewItem.class);
-        send_intent.putExtra("USER_ID", owner_id);
+        send_intent.putExtra("owner_Id", owner_id);
         startActivity(send_intent);
     }
 }
