@@ -79,16 +79,16 @@ public class Order implements Serializable {
     public void write_to_database(){
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
         mDatabase.child("Owners").child(ownerID).child("Orders").child(orderId).child("state").setValue("Incomplete");
-        mDatabase.child("Owners").child(ownerID).child("Orders").child(orderId).child("customerId").setValue(customerId);
+        mDatabase.child("Owners").child(ownerID).child("Orders").child(orderId).child("customer_id").setValue(customerId);
         mDatabase.child("Owners").child(ownerID).child("Orders").child(orderId).child("ownerId").setValue(ownerID);
 
         mDatabase.child("Customers").child(customerId).child("Orders").child(orderId).child("state").setValue("Incomplete");
-        mDatabase.child("Customers").child(customerId).child("Orders").child(orderId).child("customerId").setValue(customerId);
-        mDatabase.child("Customers").child(customerId).child("Orders").child(orderId).child("ownerId").setValue(ownerID);
+        mDatabase.child("Customers").child(customerId).child("Orders").child(orderId).child("customer_id").setValue(customerId);
+        mDatabase.child("Customers").child(customerId).child("Orders").child(orderId).child("owner_id").setValue(ownerID);
 
         mDatabase.child("Orders").child(orderId).child("state").setValue("Incomplete");
-        mDatabase.child("Orders").child(orderId).child("customerId").setValue(customerId);
-        mDatabase.child("Orders").child(orderId).child("ownerId").setValue(ownerID);
+        mDatabase.child("Orders").child(orderId).child("customer_id").setValue(customerId);
+        mDatabase.child("Orders").child(orderId).child("owner_id").setValue(ownerID);
 
         for(ArrayList<String> i: products_and_quantity){
             mDatabase.child("Orders").child(orderId).child("Products").child(i.get(PRODUCT_ID))

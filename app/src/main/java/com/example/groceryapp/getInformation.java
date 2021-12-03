@@ -68,7 +68,7 @@ public class getInformation {
 
         for (DataSnapshot product : products.getChildren()) {
             // if we've found the item
-            if (product.getKey() == product_ID) {
+            if (product.getKey().equals(product_ID)) {
                 item.add(product.child(itemNameKey).getValue(String.class));
                 item.add(product.child(itemBrandKey).getValue(String.class));
                 item.add(product.child(itemPriceKey).getValue(String.class));
@@ -182,7 +182,7 @@ public class getInformation {
 
         for (DataSnapshot user : users.getChildren()) {
             Log.d("User: ", user.getKey());
-            if (user.getKey() != null)
+            if (!user.getKey().equals(null))
                 userInformation.add(user.getKey());
         }
 
@@ -197,7 +197,7 @@ public class getInformation {
             return null;
 
         for (DataSnapshot order : orders.getChildren()) {
-            if (order.getKey() == orderID) {
+            if (order.getKey().equals(orderID)) {
                 return order.child(stateKey).getValue(String.class);
             }
         }
@@ -213,7 +213,7 @@ public class getInformation {
             return null;
 
         for (DataSnapshot order : orders.getChildren()) {
-            if (order.child(owner_or_customerIDKey).getValue() == user_ID) {
+            if (order.child(owner_or_customerIDKey).getValue().equals(user_ID)) {
                 ArrayList<String> temp = new ArrayList<>();
                 temp.add(order.getKey());
                 temp.add(order.child(stateKey).getValue(String.class));
