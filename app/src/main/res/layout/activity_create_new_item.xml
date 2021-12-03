@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/App_grey"
     tools:context=".CreateNewItem">
 
     <EditText
@@ -69,27 +70,33 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="40dp"
         android:fontFamily="@font/open_sans_bold"
+        android:singleLine="true"
         android:text="@string/new_item_title"
         android:textColor="#38761d"
         android:textSize="34sp"
-        android:singleLine="true"
         android:typeface="sans"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/button"
-        android:layout_width="153dp"
-        android:layout_height="52dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:backgroundTint="#38761D"
+        android:layout_marginBottom="100dp"
+        android:backgroundTint="#38761d"
+        android:fontFamily="@font/open_sans_bold"
         android:onClick="CreateNewItemButton"
         android:text="@string/add_item"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        app:cornerRadius="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPrice"
         tools:fontFamily="@font/open_sans_bold"
         tools:ignore="SpeakableTextPresentCheck"
-        tools:textSize="18sp" />
+        tools:textSize="24sp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

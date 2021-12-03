@@ -4,18 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/App_grey"
     tools:context=".CustomerOrderActivity">
 
     <TextView
         android:id="@+id/orders"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="200dp"
         android:fontFamily="@font/open_sans_bold"
         android:text="@string/orders"
         android:textColor="#38761d"
         android:textSize="34sp"
+        app:layout_constraintBottom_toTopOf="@+id/rvOrders"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -24,12 +27,10 @@
         android:layout_width="0dp"
         android:layout_height="585dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="10dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/orders" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

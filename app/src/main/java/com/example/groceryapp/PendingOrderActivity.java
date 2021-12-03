@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -21,6 +22,9 @@ public class PendingOrderActivity extends AppCompatActivity {
         setContentView(R.layout.activity_pending_order);
         Intent get_intent = getIntent();
         String order_id = get_intent.getStringExtra("ORDER_ID");
+
+        TextView textView = (TextView) findViewById(R.id.textViewOrderID);
+        textView.setText("Order No. " + order_id);
 
         ArrayList<ArrayList<ArrayList<String>>> allOrders = getInformation.getInstance().getAllOrders();
 
