@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.Serializable;
 import java.lang.reflect.Array;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class IndividualStoreActivity extends AppCompatActivity implements Serializable {
@@ -34,20 +35,15 @@ public class IndividualStoreActivity extends AppCompatActivity implements Serial
 
         ArrayList<ArrayList<String>> productList = Order.getCart().products_and_quantity;
         String owner_id = intent.getStringExtra("owner_Id");
-        if (productList != null) {
-            float total = 0;
-            for (int i = 0; i < productList.size(); i++) {
-                total += Float.parseFloat(productList.get(i).get(2));
-            }
-            TextView cartPrice = findViewById(R.id.textViewPrice);
-            String price_total = "$" + total;
-            cartPrice.setText(price_total);
+        float total = 0;
+        for (int i = 0; i < productList.size(); i++) {
+            total += Float.parseFloat(productList.get(i).get(2)) * Float.parseFloat(productList.get(i).get(3));
         }
-        else {
-            TextView cartPrice = findViewById(R.id.textViewPrice);
-            String price_total = "$0.00";
-            cartPrice.setText(price_total);
-        }
+        TextView cartPrice = findViewById(R.id.textViewPrice);
+        DecimalFormat df = new DecimalFormat("0.00");
+        String price_total = "$" + df.format(total);
+        cartPrice.setText(price_total);
+
 
         ArrayList<ArrayList<String>> temp = getInformation.getInstance().getAllProducts(owner_id);
         ArrayList<Product> products = new ArrayList<>();
