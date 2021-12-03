@@ -159,7 +159,7 @@ public class getInformation {
             for (DataSnapshot product : order.child(productKey).getChildren()) {
                 ArrayList<String> item = new ArrayList<>();
 
-                item.add(product.child(productIDKey).getValue(String.class));
+                item.add(product.getKey());
                 item.add(product.child(quantity).getValue(String.class));
 
                 temp.add(item);

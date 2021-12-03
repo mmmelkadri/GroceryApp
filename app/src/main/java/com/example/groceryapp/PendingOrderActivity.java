@@ -33,8 +33,12 @@ public class PendingOrderActivity extends AppCompatActivity {
                 break;
             }
         }
+        ArrayList<ArrayList<String>> productInfo = new ArrayList<>();
+        for (int i = 1; i < productInformation.size(); i++) {
+            productInfo.add(productInformation.get(i));
+        }
 
-        PendingOrderProductAdapter adapter = new PendingOrderProductAdapter(this, productInformation);
+        PendingOrderProductAdapter adapter = new PendingOrderProductAdapter(this, productInfo);
         ListView listView = (ListView) findViewById(R.id.orderItemsListView);
         listView.setAdapter(adapter);
     }
