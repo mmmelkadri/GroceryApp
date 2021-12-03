@@ -19,8 +19,8 @@ public class CustomerOrderRecyclerViewAdapter extends RecyclerView.Adapter<Custo
     private static final String TAG = "CustomerOrderRVA";
 
     // Holds the data for our buttons
-    private ArrayList<ArrayList<String>> orders;
-    private Context mContext;
+    private final ArrayList<ArrayList<String>> orders;
+    private final Context mContext;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView storeName;
@@ -32,12 +32,11 @@ public class CustomerOrderRecyclerViewAdapter extends RecyclerView.Adapter<Custo
         public ViewHolder(View view) {
             super(view);
             // Define click listener for the ViewHolder's View
-            storeName = view.findViewById(R.id.store_name);
-            orderID = view.findViewById(R.id.order_id);
+            storeName = view.findViewById(R.id.store_name_customer);
+            orderID = view.findViewById(R.id.order_id_customer);
             status = view.findViewById(R.id.completeStatus);
 
-            constraintLayout = view.findViewById(R.id.constraintButtonLayout);
-
+            constraintLayout = view.findViewById(R.id.constraintButtonLayoutCustomer);
         }
     }
 
@@ -58,20 +57,23 @@ public class CustomerOrderRecyclerViewAdapter extends RecyclerView.Adapter<Custo
 
     // Replace the contents of a view (invoked by the layout manager)
     @Override
-    public void onBindViewHolder(ViewHolder viewHolder, int position) {
-
+    public void onBindViewHolder(ViewHolder viewHolder, final int position) {
         Log.d(TAG, "onBindViewHolder called");
         int index = viewHolder.getAdapterPosition();
-        Log.d(TAG, "adapter: " + index);
+        //Log.d(TAG, "adapter: " + index);
+
+        Log.d(TAG, "onBindViewHolder: " + "BEFORE");
 
         // Set the viewHolders text at each position in orders
-        String order_id = String.valueOf(orders.get(index).get(0));
+        String order_id = orders.get(index).get(0);
         String owner_id = getInformation.getInstance().getOrderOwner(order_id);
+
 
         viewHolder.storeName.setText(getInformation.getInstance().getStoreName(owner_id));
         viewHolder.orderID.setText(order_id);
 
-        String completion_status = String.valueOf(orders.get(index).get(1));
+        String completion_status = orders.get(index).get(1);
+
         // Set colour depending on completion status
         if (completion_status.equalsIgnoreCase("Complete"))
             viewHolder.status.setTextColor(Color.parseColor("#38761d"));

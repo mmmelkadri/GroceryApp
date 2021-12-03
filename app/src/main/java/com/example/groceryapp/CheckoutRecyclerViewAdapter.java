@@ -38,7 +38,7 @@ public class CheckoutRecyclerViewAdapter extends RecyclerView.Adapter<CheckoutRe
             // Define click listener for the ViewHolder's View
             itemName = view.findViewById(R.id.store_name);
             itemBrand = view.findViewById(R.id.item_brand);
-            itemPrice = view.findViewById(R.id.completeStatus);
+            itemPrice = view.findViewById(R.id.price_product);
             itemAmount = view.findViewById(R.id.order_id);
 
             remove = view.findViewById(R.id.remove);

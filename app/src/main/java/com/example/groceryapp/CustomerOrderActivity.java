@@ -17,14 +17,14 @@ public class CustomerOrderActivity extends AppCompatActivity {
 
         // Receive customer_id
         Intent intent = getIntent();
-        String user_ID = intent.getStringExtra("cust_id");
+        String user_ID = intent.getStringExtra("cust_Id");
 
         ArrayList<ArrayList<String>> orders = getInformation.getInstance().getOrders(user_ID, getInformation.customerIDKey);
 
         // Read users orders and add buttons to the scroll layout
         RecyclerView recyclerView = findViewById(R.id.rvOrders);
 
-        CheckoutRecyclerViewAdapter adapter = new CheckoutRecyclerViewAdapter(this, orders);
+        CustomerOrderRecyclerViewAdapter adapter = new CustomerOrderRecyclerViewAdapter(this, orders);
         recyclerView.setHasFixedSize(true);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
