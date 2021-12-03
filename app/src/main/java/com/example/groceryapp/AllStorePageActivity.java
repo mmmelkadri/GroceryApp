@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -22,13 +23,16 @@ public class AllStorePageActivity extends AppCompatActivity {
             String store_name = getInformation.getInstance().getStoreName((String) x);
             store_name_list.add(store_name);
         }
+
         String customer_id = getIntent().getStringExtra("cust_Id");
         setContentView(R.layout.activity_all_store_page);
         ListView listView = (ListView) findViewById(R.id.Allstore_StoreList_ListView);
+
         AllstoreCustomAdapter AllstoreCustomAdapter = new
                 AllstoreCustomAdapter(getApplicationContext(), store_name_list);
         listView.setAdapter(AllstoreCustomAdapter);
         Intent intent = new Intent(this, IndividualStoreActivity.class);
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

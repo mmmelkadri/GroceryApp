@@ -16,15 +16,13 @@ public class getInformation {
 
     private static getInformation info;
     // keywords
-    private static final String orderKey = "orders";
-    private static final String productKey = "products";
+    private static final String orderKey = "Orders";
+    private static final String productKey = "Products";
     private static final String stateKey = "state";
     private static final String quantity = "quantity";
 
     private static final String passwordKey = "Password";
     private static final String displayNameKey = "Public Name";
-
-    private static final String productListKey = "Products";
 
     private static final String itemNameKey = "product name";
     private static final String itemBrandKey = "brand";
@@ -66,7 +64,7 @@ public class getInformation {
         // if provided owner id and product id return {itemName, itemBrand, itemPrice}
         ArrayList<String> item = new ArrayList<String>();
 
-        DataSnapshot products = Reader.getInstance().readSnapshot(orderKey, owner_ID, productListKey);
+        DataSnapshot products = Reader.getInstance().readSnapshot(orderKey, owner_ID, productKey);
 
         for (DataSnapshot product : products.getChildren()) {
             // if we've found the item
@@ -84,7 +82,7 @@ public class getInformation {
         // return {itemName, itemBrand, itemPrice} where itemName == product_ID
         ArrayList<String> item = new ArrayList<>();
 
-        DataSnapshot products = Reader.getInstance().readSnapshot(orderKey, owner_ID, productListKey);
+        DataSnapshot products = Reader.getInstance().readSnapshot(orderKey, owner_ID, productKey);
 
         for (DataSnapshot product : products.getChildren()) {
             if (product.child(itemNameKey).getValue(String.class).equals(product_ID)) {
@@ -103,7 +101,7 @@ public class getInformation {
         // if provided owner id return {{itemName, itemBrand, itemPrice} ... }
         ArrayList<ArrayList<String>> items = new ArrayList<>();
 
-        DataSnapshot products = Reader.getInstance().readSnapshot(ownerKey, owner_ID, productListKey);
+        DataSnapshot products = Reader.getInstance().readSnapshot(ownerKey, owner_ID, productKey);
         for (DataSnapshot product : products.getChildren()) {
             ArrayList<String> item = new ArrayList<>();
 
