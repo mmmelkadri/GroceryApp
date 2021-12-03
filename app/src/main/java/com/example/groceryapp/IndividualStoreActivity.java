@@ -2,7 +2,7 @@ package com.example.groceryapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.Serializable;
 import java.lang.reflect.Array;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class IndividualStoreActivity extends AppCompatActivity implements Serializable {
@@ -35,20 +36,14 @@ public class IndividualStoreActivity extends AppCompatActivity implements Serial
 
         ArrayList<ArrayList<String>> productList = cart.products_and_quantity;
         String owner_id = intent.getStringExtra("owner_Id");
-        if (productList != null) {
             float total = 0;
             for (int i = 0; i < productList.size(); i++) {
-                total += Float.parseFloat(productList.get(i).get(1));
+                total += Float.parseFloat(productList.get(i).get(2)) * Float.parseFloat(productList.get(i).get(3));
             }
             TextView cartPrice = findViewById(R.id.textViewPrice);
-            String price_total = "$" + total;
+            DecimalFormat df = new DecimalFormat("0.00");
+            String price_total = "$" + df.format(total);
             cartPrice.setText(price_total);
-        }
-        else {
-            TextView cartPrice = findViewById(R.id.textViewPrice);
-            String price_total = "$0.00";
-            cartPrice.setText(price_total);
-        }
 
         ArrayList<ArrayList<String>> temp = getInformation.getInstance().getAllProducts(owner_id);
         ArrayList<Product> products = new ArrayList<>();
@@ -65,12 +60,11 @@ public class IndividualStoreActivity extends AppCompatActivity implements Serial
         listView.setOnItemClickListener((parent, view, position, id) -> {
             Product selectedProduct = products.get(position);
             String product_name = (String) selectedProduct.product_Id;
-
             Intent send_intent = new Intent(this, ProductActivity.class);
             Bundle bundle = new Bundle();
-            bundle.putSerializable("ORDER", cart);
-            send_intent.putExtra("PRODUCT_ID", product_name);
+            bundle.putSerializable("ORDER", (Serializable) cart);
             send_intent.putExtras(bundle);
+            send_intent.putExtra("PRODUCT_ID", product_name);
             startActivity(send_intent);
         });
     }
@@ -78,9 +72,7 @@ public class IndividualStoreActivity extends AppCompatActivity implements Serial
 
     public void openCheckout(View view) {
         Intent send_intent = new Intent(this, CheckoutActivity.class);
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("ORDER", cart);
-        send_intent.putExtras(bundle);
+        send_intent.putExtra("ORDER", (Serializable) cart);
         startActivity(send_intent);
     }
 }
