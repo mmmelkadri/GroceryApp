@@ -78,11 +78,9 @@ public class Order implements Serializable {
         mDatabase.child("Orders").child(orderId).child("customerId").setValue(customerId);
         mDatabase.child("Orders").child(orderId).child("ownerId").setValue(ownerID);
 
-        int j=0;
         for(ArrayList<String> i: products_and_quantity){
-            mDatabase.child("Orders").child(orderId).child("Products").child(Integer.toString(j))
-                    .child("product_id").setValue(i.get(PRODUCT_ID));
-            j++;
+            mDatabase.child("Orders").child(orderId).child("Products").child(i.get(PRODUCT_ID))
+                    .child("quantity").setValue(i.get(QUANTITY));
         }
 
     }
