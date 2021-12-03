@@ -47,7 +47,7 @@ public class OwnerOrderBaaseAdaptor extends BaseAdapter {
 
         String state_s = array_list.get(position).get(1);
         textViewState.setText(state_s);
-        if(state_s.equals("Completed")){
+        if(state_s.equals("Complete")){
             textViewState.setTextColor(context.getResources().getColor(R.color.App_green));
         }
         else {
