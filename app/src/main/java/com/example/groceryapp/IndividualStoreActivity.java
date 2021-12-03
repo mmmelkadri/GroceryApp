@@ -12,7 +12,7 @@ import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-public class IndividualStoreActivity extends AppCompatActivity {
+public class IndividualStoreActivity extends AppCompatActivity implements Serializable {
     Order cart;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,13 +34,20 @@ public class IndividualStoreActivity extends AppCompatActivity {
 
         ArrayList<ArrayList<String>> productList = cart.products_and_quantity;
         String owner_id = intent.getStringExtra("owner_Id");
-        float total = 0;
-        for (int i = 0; i < productList.size(); i++) {
-            total += Float.parseFloat(productList.get(i).get(1));
+        if (productList != null) {
+            float total = 0;
+            for (int i = 0; i < productList.size(); i++) {
+                total += Float.parseFloat(productList.get(i).get(1));
+            }
+            TextView cartPrice = findViewById(R.id.textViewPrice);
+            String price_total = "$" + total;
+            cartPrice.setText(price_total);
         }
-        TextView cartPrice = findViewById(R.id.textViewPrice);
-        String price_total = "$" + total;
-        cartPrice.setText(price_total);
+        else {
+            TextView cartPrice = findViewById(R.id.textViewPrice);
+            String price_total = "$0.00";
+            cartPrice.setText(price_total);
+        }
 
         ArrayList<ArrayList<String>> temp = getInformation.getInstance().getAllProducts(owner_id);
         ArrayList<Product> products = new ArrayList<>();

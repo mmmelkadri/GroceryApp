@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class CheckoutActivity extends AppCompatActivity implements Serializable {
 
@@ -35,6 +36,8 @@ public class CheckoutActivity extends AppCompatActivity implements Serializable 
     }
 
     public void checkoutButton(View view) {
-        cart.checkoutOrder();;
+        cart.checkoutOrder();
+        // return to store page
+        finish();
     }
 }

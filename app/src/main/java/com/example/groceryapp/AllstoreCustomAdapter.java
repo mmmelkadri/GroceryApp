@@ -1,6 +1,7 @@
 package com.example.groceryapp;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,8 +39,10 @@ public class AllstoreCustomAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        Log.d("Before:", "inflater");
         convertView = inflater.inflate(R.layout.activity_all_store_single_row, null);
         TextView textView = (TextView) convertView.findViewById(R.id.Allstore_store_textView);
+        Log.d("Before:", "setText");
         textView.setText((String) store_list.get(position));
         return convertView;
     }

@@ -57,6 +57,8 @@ public class Order  {
         //Access Order counter, add one, assign to orderId, call WriteToDatabase()
         orderId = Integer.toString(getInformation.getInstance().getNumOrders() + 1);
         write_to_database();
+        // make cart empty
+        this.products_and_quantity = new ArrayList<>();
     }
 
     public void write_to_database(){

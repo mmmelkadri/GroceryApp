@@ -63,6 +63,7 @@
         android:backgroundTint="#38761D"
         android:fontFamily="@font/open_sans_bold"
         android:onClick="addToCart"
+        android:autoSizeTextType="uniform"
         android:text="@string/add_to_cart"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
