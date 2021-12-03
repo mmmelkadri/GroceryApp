@@ -29,7 +29,10 @@
         <entry key="app/src/main/res/layout/activity_customer_order.xml" value="0.14635416666666667" />
         <entry key="app/src/main/res/layout/activity_individual_store.xml" value="0.14635416666666667" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.14635416666666667" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.16770833333333332" />
+        <entry key="app/src/main/res/layout/activity_product.xml" value="0.16770833333333332" />
         <entry key="app/src/main/res/layout/customer_order_button.xml" value="0.14635416666666667" />
+        <entry key="app/src/main/res/layout/individual_product_button.xml" value="0.16770833333333332" />
       </map>
     </option>
   </component>
