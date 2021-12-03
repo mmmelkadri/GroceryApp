@@ -16,8 +16,8 @@ import java.util.regex.Pattern;
 
 // Mohamad El Kadri
 public class ProductActivity extends AppCompatActivity implements Serializable {
-    Order order;
-    private Product product;
+    Order cart;
+    Product product;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,11 +26,12 @@ public class ProductActivity extends AppCompatActivity implements Serializable {
 
         // receive Intent itemID, read item name, brand and price
         Intent intent = getIntent();
-        Order order = (Order) intent.getSerializableExtra("ORDER");
+        Bundle bundle = intent.getExtras();
+        cart = (Order) bundle.getSerializable("ORDER");
 
         String item_ID = (String) intent.getStringExtra("PRODUCT_ID");
 
-        ArrayList<String> product_info = getInformation.getInstance().getProduct(order.ownerID, item_ID);
+        ArrayList<String> product_info = getInformation.getInstance().getProduct(cart.ownerID, item_ID);
 
         // Create a product object to add to the order
         product = new Product(item_ID,
@@ -52,13 +53,14 @@ public class ProductActivity extends AppCompatActivity implements Serializable {
         Pattern pattern = Pattern.compile("[1-9]+\\d*");
         Matcher matcher = pattern.matcher(num);
 
+
         if (!matcher.matches()) {
             //display message stating problem
             CharSequence error = "Please enter a valid amount.";
             Toast toast = Toast.makeText(getApplicationContext(), error, Toast.LENGTH_SHORT);
         } else {
             //add to users cart
-            order.add_to_order(product, num);
+            cart.add_to_order(product, num);
             //return to store page
             finish();
         }

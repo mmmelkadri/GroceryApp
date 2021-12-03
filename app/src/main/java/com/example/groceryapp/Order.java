@@ -4,22 +4,25 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Order  {
+public class Order implements Serializable {
     String orderId;
     String customerId;
     String ownerID;
     boolean status = false;
-    ArrayList<ArrayList<String>> products_and_quantity;
+    static ArrayList<ArrayList<String>> products_and_quantity;
     int PRODUCT_ID = 0;
     int PRODUCT_NAME = 1;
     int BRAND = 2;
     int PRICE = 3;
     int QUANTITY = 4;
+
     public Order(String customerId, String ownerID){
         this.customerId = customerId;
         this.ownerID = ownerID;
+        products_and_quantity = new ArrayList<>();
     }
 
     public void add_to_order(Product product, String quantity){

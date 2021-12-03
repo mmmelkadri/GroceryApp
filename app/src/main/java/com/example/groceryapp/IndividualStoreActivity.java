@@ -2,6 +2,7 @@ package com.example.groceryapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -64,9 +65,12 @@ public class IndividualStoreActivity extends AppCompatActivity implements Serial
         listView.setOnItemClickListener((parent, view, position, id) -> {
             Product selectedProduct = products.get(position);
             String product_name = (String) selectedProduct.product_Id;
+
             Intent send_intent = new Intent(this, ProductActivity.class);
-            send_intent.putExtra("ORDER", (Serializable) cart);
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("ORDER", cart);
             send_intent.putExtra("PRODUCT_ID", product_name);
+            send_intent.putExtras(bundle);
             startActivity(send_intent);
         });
     }
@@ -74,7 +78,9 @@ public class IndividualStoreActivity extends AppCompatActivity implements Serial
 
     public void openCheckout(View view) {
         Intent send_intent = new Intent(this, CheckoutActivity.class);
-        send_intent.putExtra("ORDER", (Serializable) cart);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("ORDER", cart);
+        send_intent.putExtras(bundle);
         startActivity(send_intent);
     }
 }
