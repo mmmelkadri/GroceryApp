@@ -11,6 +11,7 @@
         android:id="@+id/Allstore_Heading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
         android:fontFamily="@font/open_sans_bold"
         android:text="@string/stores"
         android:textColor="@color/App_green"
@@ -18,16 +19,13 @@
         android:textStyle="bold"
         android:typeface="sans"
         app:layout_constraintBaseline_toBaselineOf="@+id/Allstore_Customer_Orders_Button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.105"
         app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/Allstore_Customer_Orders_Button"
         android:layout_width="215dp"
         android:layout_height="50dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginTop="30dp"
         android:backgroundTint="@color/App_green"
         android:fontFamily="@font/open_sans_bold"
         android:onClick="AllStore_past_orders_button"
@@ -35,23 +33,25 @@
         android:textSize="16sp"
         android:typeface="sans"
         app:cornerRadius="50dp"
-        app:layout_constraintBottom_toTopOf="@+id/Allstore_StoreList_ListView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/Allstore_Heading"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ListView
         android:id="@+id/Allstore_StoreList_ListView"
-        android:layout_width="0dp"
-        android:layout_height="635dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="16dp"
+        android:layout_width="347dp"
+        android:layout_height="550dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="30dp"
         android:backgroundTint="@color/App_grey"
         android:divider="@color/App_grey"
         android:dividerHeight="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Allstore_Customer_Orders_Button"
+        app:layout_constraintVertical_bias="0.512" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
