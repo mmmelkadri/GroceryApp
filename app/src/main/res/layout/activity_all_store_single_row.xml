@@ -20,6 +20,7 @@
         android:fontFamily="@font/open_sans"
         android:gravity="center"
         android:text="My_text"
+        android:paddingLeft="10dp"
         android:textColor="@color/App_green"
         android:textSize="30sp"
         android:textStyle="bold"
