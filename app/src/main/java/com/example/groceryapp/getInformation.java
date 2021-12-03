@@ -82,7 +82,7 @@ public class getInformation {
         // return {itemName, itemBrand, itemPrice} where itemName == product_ID
         ArrayList<String> item = new ArrayList<>();
 
-        DataSnapshot products = Reader.getInstance().readSnapshot(orderKey, owner_ID, productKey);
+        DataSnapshot products = Reader.getInstance().readSnapshot(ownerKey, owner_ID, productKey);
 
         for (DataSnapshot product : products.getChildren()) {
             if (product.child(itemNameKey).getValue(String.class).equals(product_ID)) {

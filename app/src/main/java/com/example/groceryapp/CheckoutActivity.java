@@ -21,8 +21,8 @@ public class CheckoutActivity extends AppCompatActivity implements Serializable 
         setContentView(R.layout.activity_checkout);
 
         Intent intent = getIntent();
-
-        cart = (Order)intent.getSerializableExtra("ORDER");
+        Bundle bundle = intent.getExtras();
+        cart = (Order) bundle.getSerializable("ORDER");
 
         // Read users cart and add buttons to the scroll layout
         RecyclerView recyclerView = findViewById(R.id.rvItems);
