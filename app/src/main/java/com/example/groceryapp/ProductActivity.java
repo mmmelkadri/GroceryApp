@@ -38,7 +38,7 @@ public class ProductActivity extends AppCompatActivity implements Serializable {
         itemName.setText(product.product_Id);
 
         TextView itemBrand = (TextView) findViewById(R.id.itemBrand);
-        itemName.setText(product.brand);
+        itemBrand.setText(product.brand);
     }
 
     public void addToCart(View view) {
