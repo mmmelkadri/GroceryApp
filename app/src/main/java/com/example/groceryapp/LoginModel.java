@@ -7,8 +7,8 @@ public class LoginModel implements LoginContract.Model {
     public ArrayList<Object> allCustomers, allOwners;
 
     public LoginModel() {
-        ArrayList<Object> allOwners = getInformation.getInstance().getAllUsers(getInformation.ownerKey);
-        ArrayList<Object> allCustomers = getInformation.getInstance().getAllUsers(getInformation.customerKey);
+        allOwners = getInformation.getInstance().getAllUsers(getInformation.ownerKey);
+        allCustomers = getInformation.getInstance().getAllUsers(getInformation.customerKey);
     }
     @Override
     public boolean ownerExists(String username) {
