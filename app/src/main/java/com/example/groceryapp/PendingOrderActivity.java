@@ -3,6 +3,7 @@ package com.example.groceryapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -36,6 +37,18 @@ public class PendingOrderActivity extends AppCompatActivity {
         PendingOrderProductAdapter adapter = new PendingOrderProductAdapter(this, productInformation);
         ListView listView = (ListView) findViewById(R.id.orderItemsListView);
         listView.setAdapter(adapter);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Intent get_intent = getIntent();
+        String order_id = get_intent.getStringExtra("ORDER_ID");
+        CheckBox cb = (CheckBox)findViewById(R.id.checkBoxOrderComplete);
+        String status = getInformation.getInstance().getState(order_id);
+        if (status.equals("Complete")) {
+            cb.setChecked(true);
+        }
     }
 
     public void onClickCheck(View view) {
