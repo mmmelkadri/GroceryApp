@@ -57,7 +57,7 @@ public class PendingOrderActivity extends AppCompatActivity {
 
         String customerid = Reader.getInstance().readValue("Orders", order_id, "customer_id");
         String ownerid = Reader.getInstance().readValue("Orders", order_id, "owner_id");
-        Order order = new Order(customerid, ownerid);
-        order.change_order_status(order_id);
+        Order.instantiateCart(customerid, ownerid);
+        Order.getCart().change_order_status(order_id);
     }
 }

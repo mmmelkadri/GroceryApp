@@ -14,7 +14,6 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class IndividualStoreActivity extends AppCompatActivity implements Serializable {
-    Order cart;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,7 +21,7 @@ public class IndividualStoreActivity extends AppCompatActivity implements Serial
         Intent intent = getIntent();
         String customer_id = intent.getStringExtra("cust_Id");
         String owner_id = intent.getStringExtra("owner_Id");
-        cart = new Order(customer_id, owner_id);
+        Order.getCart().instantiateCart(customer_id, owner_id);
         String store_name = getInformation.getInstance().getStoreName(owner_id);
         TextView storeName = findViewById(R.id.textViewStoreName);
         storeName.setText(store_name);
@@ -33,12 +32,12 @@ public class IndividualStoreActivity extends AppCompatActivity implements Serial
         super.onResume();
         Intent intent = getIntent();
 
-        ArrayList<ArrayList<String>> productList = cart.products_and_quantity;
+        ArrayList<ArrayList<String>> productList = Order.getCart().products_and_quantity;
         String owner_id = intent.getStringExtra("owner_Id");
         if (productList != null) {
             float total = 0;
             for (int i = 0; i < productList.size(); i++) {
-                total += Float.parseFloat(productList.get(i).get(1));
+                total += Float.parseFloat(productList.get(i).get(2));
             }
             TextView cartPrice = findViewById(R.id.textViewPrice);
             String price_total = "$" + total;
@@ -67,10 +66,7 @@ public class IndividualStoreActivity extends AppCompatActivity implements Serial
             String product_name = (String) selectedProduct.product_Id;
 
             Intent send_intent = new Intent(this, ProductActivity.class);
-            Bundle bundle = new Bundle();
-            bundle.putSerializable("ORDER", cart);
             send_intent.putExtra("PRODUCT_ID", product_name);
-            send_intent.putExtras(bundle);
             startActivity(send_intent);
         });
     }
@@ -78,9 +74,6 @@ public class IndividualStoreActivity extends AppCompatActivity implements Serial
 
     public void openCheckout(View view) {
         Intent send_intent = new Intent(this, CheckoutActivity.class);
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("ORDER", cart);
-        send_intent.putExtras(bundle);
         startActivity(send_intent);
     }
 }

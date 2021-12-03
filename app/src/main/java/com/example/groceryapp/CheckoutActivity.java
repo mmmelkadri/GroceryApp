@@ -13,22 +13,16 @@ import java.util.ArrayList;
 
 public class CheckoutActivity extends AppCompatActivity implements Serializable {
 
-    Order cart;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checkout);
 
-        Intent intent = getIntent();
-        Bundle bundle = intent.getExtras();
-        cart = (Order) bundle.getSerializable("ORDER");
-
         // Read users cart and add buttons to the scroll layout
         RecyclerView recyclerView = findViewById(R.id.rvItems);
 
         // onClick implementations in Adapter
-        CheckoutRecyclerViewAdapter adapter = new CheckoutRecyclerViewAdapter(this, cart.products_and_quantity);
+        CheckoutRecyclerViewAdapter adapter = new CheckoutRecyclerViewAdapter(this, Order.getCart().products_and_quantity);
         recyclerView.setHasFixedSize(true);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -36,7 +30,7 @@ public class CheckoutActivity extends AppCompatActivity implements Serializable 
     }
 
     public void checkoutButton(View view) {
-        cart.checkoutOrder();
+        Order.getCart().checkoutOrder();
         // return to store page
         finish();
     }

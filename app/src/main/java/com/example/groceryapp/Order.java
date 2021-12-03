@@ -5,24 +5,37 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.Serializable;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Order implements Serializable {
+    private static Order cart;
     String orderId;
     String customerId;
     String ownerID;
     boolean status = false;
-    static ArrayList<ArrayList<String>> products_and_quantity;
+    ArrayList<ArrayList<String>> products_and_quantity;
     int PRODUCT_ID = 0;
     int PRODUCT_NAME = 1;
     int BRAND = 2;
     int PRICE = 3;
     int QUANTITY = 4;
 
-    public Order(String customerId, String ownerID){
-        this.customerId = customerId;
-        this.ownerID = ownerID;
+    private Order(){
         products_and_quantity = new ArrayList<>();
+    }
+
+    // Should be called at the onCreate of AllStores
+    public static void instantiateCart(String customerId, String ownerID) {
+        cart.customerId = customerId;
+        cart.ownerID = ownerID;
+        cart.products_and_quantity = new ArrayList<>();
+    }
+
+    public static Order getCart() {
+        if (cart == null)
+            cart = new Order();
+        return cart;
     }
 
     public void add_to_order(Product product, String quantity){

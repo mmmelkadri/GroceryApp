@@ -16,7 +16,6 @@ import java.util.regex.Pattern;
 
 // Mohamad El Kadri
 public class ProductActivity extends AppCompatActivity implements Serializable {
-    Order cart;
     Product product;
 
     @Override
@@ -26,12 +25,9 @@ public class ProductActivity extends AppCompatActivity implements Serializable {
 
         // receive Intent itemID, read item name, brand and price
         Intent intent = getIntent();
-        Bundle bundle = intent.getExtras();
-        cart = (Order) bundle.getSerializable("ORDER");
-
         String item_ID = (String) intent.getStringExtra("PRODUCT_ID");
 
-        ArrayList<String> product_info = getInformation.getInstance().getProduct(cart.ownerID, item_ID);
+        ArrayList<String> product_info = getInformation.getInstance().getProduct(Order.getCart().ownerID, item_ID);
 
         // Create a product object to add to the order
         product = new Product(item_ID,
@@ -60,7 +56,7 @@ public class ProductActivity extends AppCompatActivity implements Serializable {
             Toast toast = Toast.makeText(getApplicationContext(), error, Toast.LENGTH_SHORT);
         } else {
             //add to users cart
-            cart.add_to_order(product, num);
+            Order.getCart().add_to_order(product, num);
             //return to store page
             finish();
         }

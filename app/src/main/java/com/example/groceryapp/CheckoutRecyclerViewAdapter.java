@@ -82,15 +82,15 @@ public class CheckoutRecyclerViewAdapter extends RecyclerView.Adapter<CheckoutRe
 
         viewHolder.itemBrand.setText(String.valueOf(products.get(index).get(1)));
         viewHolder.itemPrice.setText(String.valueOf(products.get(index).get(2)));
-        viewHolder.itemAmount.setText(String.valueOf(products.get(index).get(4)));
+        viewHolder.itemAmount.setText(String.valueOf(products.get(index).get(3)));
 
         viewHolder.increment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // get quantity and increment in product
-                int quantity = Integer.valueOf(products.get(index).get(4));
-                products.get(index).set(4, String.valueOf(quantity + 1));
-                viewHolder.itemAmount.setText(String.valueOf(products.get(index).get(4)));
+                int quantity = Integer.valueOf(products.get(index).get(3));
+                products.get(index).set(3, String.valueOf(quantity + 1));
+                viewHolder.itemAmount.setText(String.valueOf(products.get(index).get(3)));
             }
         });
 
@@ -98,12 +98,12 @@ public class CheckoutRecyclerViewAdapter extends RecyclerView.Adapter<CheckoutRe
             @Override
             public void onClick(View v) {
                 // get quantity and decrement in product
-                int quantity = Integer.valueOf(products.get(index).get(4));
+                int quantity = Integer.valueOf(products.get(index).get(3));
 
                 // minimum quantity must be 1
                 if (quantity > 1)
-                    products.get(index).set(4, String.valueOf(quantity - 1));
-                    viewHolder.itemAmount.setText(String.valueOf(products.get(index).get(4)));
+                    products.get(index).set(3, String.valueOf(quantity - 1));
+                    viewHolder.itemAmount.setText(String.valueOf(products.get(index).get(3)));
             }
         });
 
