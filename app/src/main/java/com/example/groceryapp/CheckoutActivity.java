@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import java.io.Serializable;
@@ -29,8 +30,9 @@ public class CheckoutActivity extends AppCompatActivity implements Serializable 
         recyclerView.setAdapter(adapter);
     }
 
-    public void checkoutButton(View view) {
+    public void checkout(View view) {
         Order.getCart().checkoutOrder();
+        Log.d("Checkout: ", "Checked Out");
         // return to store page
         finish();
     }

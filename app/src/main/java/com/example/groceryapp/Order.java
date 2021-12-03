@@ -16,10 +16,9 @@ public class Order implements Serializable {
     boolean status = false;
     ArrayList<ArrayList<String>> products_and_quantity;
     int PRODUCT_ID = 0;
-    int PRODUCT_NAME = 1;
-    int BRAND = 2;
-    int PRICE = 3;
-    int QUANTITY = 4;
+    int BRAND = 1;
+    int PRICE = 2;
+    int QUANTITY = 3;
 
     private Order(){
         products_and_quantity = new ArrayList<>();
