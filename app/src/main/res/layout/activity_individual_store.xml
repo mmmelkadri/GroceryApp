@@ -47,7 +47,7 @@
         android:id="@+id/textViewStoreName"
         android:layout_width="171dp"
         android:layout_height="55dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="5dp"
         android:gravity="center"
         android:text="TextView"
         android:textColor="#38761d"
@@ -60,9 +60,11 @@
         android:id="@+id/productsListView"
         android:layout_width="410dp"
         android:layout_height="458dp"
+        android:layout_marginTop="98dp"
         android:layout_marginBottom="50dp"
         app:layout_constraintBottom_toTopOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewStoreName" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
