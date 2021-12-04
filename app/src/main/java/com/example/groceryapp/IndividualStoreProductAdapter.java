@@ -21,8 +21,10 @@ public class IndividualStoreProductAdapter extends ArrayAdapter<Product> {
         }
         TextView product = (TextView) convertView.findViewById(R.id.product);
         TextView price = (TextView) convertView.findViewById(R.id.price);
-        product.setText((String) product_info.product_Id);
-        price.setText((String) product_info.price);
+        String productString = product_info.product_Id;
+        String priceString = "$" + product_info.price;
+        product.setText((String) productString);
+        price.setText((String) priceString);
         return convertView;
     }
 }

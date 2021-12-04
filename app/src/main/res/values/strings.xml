@@ -17,7 +17,7 @@
     <string name="enter_password">Enter Password</string>
     <string name="enter_display_name">Enter Display Name</string>
     <string name="stores">Stores</string>
-    <string name="button_pending_orders">Pending Orders</string>
+    <string name="button_pending_orders">All Orders</string>
     <string name="button_new_item">Create New Item</string>
     <string name="checkbox_mark_complete">Mark Order as Complete</string>
     <string name="button_checkout">Checkout</string>
@@ -27,8 +27,8 @@
     <string name="add_item">Add Item</string>
     <string name="description">Description</string>
     <string name="price">Price</string>
-    <string name="new_brand">New Brand</string>
-    <string name="new_name">New Name</string>
+    <string name="new_brand">Item Brand</string>
+    <string name="new_name">Item Name</string>
     <string name="new_item_title">New Item</string>
     <string name="public_name">Display Name</string>
     <string name="past_orders">Past Orders</string>

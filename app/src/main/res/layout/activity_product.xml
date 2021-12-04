@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:backgroundTint="#38761D"
+    android:background="@color/App_grey"
     tools:context=".ProductActivity">
 
     <TextView
@@ -61,10 +61,10 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="64dp"
         android:layout_marginBottom="64dp"
+        android:autoSizeTextType="uniform"
         android:backgroundTint="#38761D"
         android:fontFamily="@font/open_sans_bold"
         android:onClick="addToCart"
-        android:autoSizeTextType="uniform"
         android:text="@string/add_to_cart"
         android:textColor="#FFFFFF"
         android:textSize="18sp"

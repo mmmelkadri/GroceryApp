@@ -26,6 +26,7 @@ public class Order implements Serializable {
 
     // Should be called at the onCreate of AllStores
     public static void instantiateCart(String customerId, String ownerID) {
+        cart = new Order();
         cart.customerId = customerId;
         cart.ownerID = ownerID;
         cart.products_and_quantity = new ArrayList<>();

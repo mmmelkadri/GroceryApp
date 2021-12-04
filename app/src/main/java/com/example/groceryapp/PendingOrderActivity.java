@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -22,6 +23,9 @@ public class PendingOrderActivity extends AppCompatActivity {
         Intent get_intent = getIntent();
         String order_id = get_intent.getStringExtra("ORDER_ID");
 
+        TextView textView = (TextView) findViewById(R.id.textViewOrderID);
+        textView.setText("Order No. " + order_id);
+
         ArrayList<ArrayList<ArrayList<String>>> allOrders = getInformation.getInstance().getAllOrders();
 
         ArrayList<ArrayList<String>> productInformation = new ArrayList<>();
@@ -33,8 +37,12 @@ public class PendingOrderActivity extends AppCompatActivity {
                 break;
             }
         }
+        ArrayList<ArrayList<String>> productInfo = new ArrayList<>();
+        for (int i = 1; i < productInformation.size(); i++) {
+            productInfo.add(productInformation.get(i));
+        }
 
-        PendingOrderProductAdapter adapter = new PendingOrderProductAdapter(this, productInformation);
+        PendingOrderProductAdapter adapter = new PendingOrderProductAdapter(this, productInfo);
         ListView listView = (ListView) findViewById(R.id.orderItemsListView);
         listView.setAdapter(adapter);
     }
