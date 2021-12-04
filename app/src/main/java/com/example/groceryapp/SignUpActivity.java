@@ -18,16 +18,16 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     public void SignUpSignUpButton (View view){
-        EditText username_edit =  (EditText) findViewById(R.id.Signup_Username_EditText);
+        EditText username_edit =  findViewById(R.id.Signup_Username_EditText);
         String username_s = username_edit.getText().toString();
 
-        EditText password_edit =  (EditText) findViewById(R.id.Signup_Password_EditText);
+        EditText password_edit =  findViewById(R.id.Signup_Password_EditText);
         String password_s = password_edit.getText().toString();
 
-        EditText public_name_edit =  (EditText) findViewById(R.id.Signup_PublicName_EditText);
+        EditText public_name_edit =  findViewById(R.id.Signup_PublicName_EditText);
         String public_s = public_name_edit.getText().toString();
 
-        Spinner spinner = (Spinner) findViewById(R.id.Signup_UserDropdown);
+        Spinner spinner = findViewById(R.id.Signup_UserDropdown);
         String spinner_s = String.valueOf(spinner.getSelectedItem());
 
         try {

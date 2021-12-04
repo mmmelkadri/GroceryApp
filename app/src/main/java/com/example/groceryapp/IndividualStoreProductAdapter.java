@@ -19,12 +19,12 @@ public class IndividualStoreProductAdapter extends ArrayAdapter<Product> {
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.products_list_view, parent, false);
         }
-        TextView product = (TextView) convertView.findViewById(R.id.product);
-        TextView price = (TextView) convertView.findViewById(R.id.price);
+        TextView product = convertView.findViewById(R.id.product);
+        TextView price = convertView.findViewById(R.id.price);
         String productString = product_info.product_Id;
         String priceString = "$" + product_info.price;
-        product.setText((String) productString);
-        price.setText((String) priceString);
+        product.setText(productString);
+        price.setText(priceString);
         return convertView;
     }
 }

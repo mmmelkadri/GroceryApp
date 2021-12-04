@@ -1,11 +1,9 @@
 package com.example.groceryapp;
 
-import android.provider.ContactsContract;
 import android.util.Log;
 
 import com.google.firebase.database.DataSnapshot;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 // Mohamad El Kadri
@@ -53,29 +51,11 @@ public class getInformation {
         for (DataSnapshot store : stores.getChildren()) {
             String owner = store.child(displayNameKey).getValue(String.class);
 
-            if (store.getKey().equals(owner_ID))
+            if (store.getKey() != null && store.getKey().equals(owner_ID))
                 return owner;
         }
 
         return "";
-    }
-
-    public ArrayList<String> getIndividualProduct(String owner_ID, String product_ID) {
-        // if provided owner id and product id return {itemName, itemBrand, itemPrice}
-        ArrayList<String> item = new ArrayList<String>();
-
-        DataSnapshot products = Reader.getInstance().readSnapshot(orderKey, owner_ID, productKey);
-
-        for (DataSnapshot product : products.getChildren()) {
-            // if we've found the item
-            if (product.getKey().equals(product_ID)) {
-                item.add(product.child(itemNameKey).getValue(String.class));
-                item.add(product.child(itemBrandKey).getValue(String.class));
-                item.add(product.child(itemPriceKey).getValue(String.class));
-            }
-        }
-
-        return item;
     }
 
     public ArrayList<String> getProduct(String owner_ID, String product_ID) {
@@ -115,29 +95,9 @@ public class getInformation {
         return items;
     }
 
-    public ArrayList<ArrayList<String>> getProductInformation(String order_ID) {
-        // Returns {{productID1, quantity}, {productID2, quantity} ...} in given order
-        ArrayList<ArrayList<String>> productInformation = new ArrayList<>();
-        DataSnapshot products = Reader.getInstance().readSnapshot(orderKey, order_ID, productKey);
-
-        if (products == null)
-            return null;
-
-        for (DataSnapshot product : products.getChildren()) {
-            ArrayList<String> temp = new ArrayList<String>();
-            // Each product must have a productIDKey and quantity
-            temp.add(product.child(productIDKey).getValue(String.class));
-            temp.add(product.child(quantity).getValue(String.class));
-            productInformation.add(temp);
-        }
-
-        return productInformation;
-    }
-
     public String getPassword(String owner_or_customerKey, String IDKey) {
         // Returns password
-        String password = Reader.getInstance().readValue(owner_or_customerKey, IDKey, passwordKey);
-        return password;
+        return Reader.getInstance().readValue(owner_or_customerKey, IDKey, passwordKey);
     }
 
     public ArrayList<ArrayList<ArrayList<String>>> getAllOrders() {
@@ -182,8 +142,7 @@ public class getInformation {
 
         for (DataSnapshot user : users.getChildren()) {
             Log.d("User: ", user.getKey());
-            if (!user.getKey().equals(null))
-                userInformation.add(user.getKey());
+            userInformation.add(user.getKey());
         }
 
         return userInformation;
@@ -197,7 +156,7 @@ public class getInformation {
             return null;
 
         for (DataSnapshot order : orders.getChildren()) {
-            if (order.getKey().equals(orderID)) {
+            if (order.getKey() != null && order.getKey().equals(orderID)) {
                 return order.child(stateKey).getValue(String.class);
             }
         }
@@ -213,7 +172,8 @@ public class getInformation {
             return null;
 
         for (DataSnapshot order : orders.getChildren()) {
-            if (order.child(owner_or_customerIDKey).getValue().equals(user_ID)) {
+            if (order.hasChild(owner_or_customerIDKey) &&
+                    order.child(owner_or_customerIDKey).getValue().equals(user_ID)) {
                 ArrayList<String> temp = new ArrayList<>();
                 temp.add(order.getKey());
                 temp.add(order.child(stateKey).getValue(String.class));
@@ -230,7 +190,7 @@ public class getInformation {
         DataSnapshot orders = Reader.getInstance().readSnapshot(orderKey);
 
         for (DataSnapshot order : orders.getChildren()) {
-            if (order.getKey().equals(orderID)) {
+            if (order.getKey() != null && order.getKey().equals(orderID)) {
                 return order.child(ownerIDKey).getValue(String.class);
             }
         }

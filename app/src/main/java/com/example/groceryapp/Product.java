@@ -1,7 +1,7 @@
 package com.example.groceryapp;
 
-import android.util.Log;
-
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -21,8 +21,11 @@ public class Product {
         if (brand.equals("")||product_Id.equals("")||price.equals("")){
             throw new IllegalArgumentException("Missing fields, please complete all the required fields");
         }
-
-        // check if .contains will find String and Object as equal
+        Pattern pattern = Pattern.compile("([0-9])+([.])?([0-9])*");
+        Matcher matcher = pattern.matcher(price);
+        if(!matcher.matches()){
+            throw new IllegalArgumentException("Illegal input for price");
+        }
 
         ArrayList<ArrayList<String>> all_products  = getInformation.getInstance().getAllProducts(user_ID);
         for(ArrayList<String> i: all_products){

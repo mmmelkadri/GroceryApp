@@ -1,6 +1,5 @@
 package com.example.groceryapp;
 
-import android.provider.ContactsContract;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -46,13 +45,13 @@ public class Reader {
 
         for (String arg : args) {
             // if the child does not exist, return empty string
-            if (temp.child(arg) == null)
+            if (!temp.hasChild(arg))
                 return "";
 
             temp = temp.child(arg);
         }
 
-        return (String) temp.getValue(String.class);
+        return temp.getValue(String.class);
     }
 
     public DataSnapshot readSnapshot(String... args) {
@@ -61,7 +60,7 @@ public class Reader {
 
         for (String arg : args) {
             // if the child does not exist, return null
-            if (temp.child(arg) == null)
+            if (!temp.hasChild(arg))
                 return null;
 
             temp = temp.child(arg);

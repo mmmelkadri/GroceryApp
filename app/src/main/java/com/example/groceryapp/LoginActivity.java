@@ -4,17 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Toast;
-
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
-import java.util.ArrayList;
 
 public class LoginActivity extends AppCompatActivity implements LoginContract.View{
     private LoginContract.Presenter presenter;
@@ -27,13 +19,13 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
 
     @Override
     public String getUsername() {
-        EditText username_editText = (EditText) findViewById(R.id.Login_Username_EditText);
+        EditText username_editText = findViewById(R.id.Login_Username_EditText);
         return username_editText.getText().toString();
     }
 
     @Override
     public String getPassword() {
-        EditText password_editText = (EditText) findViewById(R.id.Login_Password_EditText);
+        EditText password_editText = findViewById(R.id.Login_Password_EditText);
         return password_editText.getText().toString();
     }
 
@@ -71,4 +63,8 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        // disables back button since previous activity is just a loading screen
+    }
 }

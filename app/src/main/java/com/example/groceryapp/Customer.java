@@ -32,8 +32,4 @@ public class Customer extends User{
         mDatabase.child("Customers").child(username).child("Public Name").setValue(this.display_name);
         mDatabase.child("Customers").child(username).child("Password").setValue(this.password);
     }
-
-    /*public ArrayList<ArrayList<String>> getOrders(String user_ID) {
-        return getInformation.getInstance().getOrders(user_ID, getInformation.customerIDKey);
-    }*/
 }

@@ -2,7 +2,6 @@ package com.example.groceryapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -10,7 +9,6 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.Serializable;
-import java.lang.reflect.Array;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
@@ -54,12 +52,12 @@ public class IndividualStoreActivity extends AppCompatActivity implements Serial
         }
 
         IndividualStoreProductAdapter adapter = new IndividualStoreProductAdapter(this, products);
-        ListView listView = (ListView) findViewById(R.id.productsListView);
+        ListView listView = findViewById(R.id.productsListView);
         listView.setAdapter(adapter);
 
         listView.setOnItemClickListener((parent, view, position, id) -> {
             Product selectedProduct = products.get(position);
-            String product_name = (String) selectedProduct.product_Id;
+            String product_name = selectedProduct.product_Id;
 
             Intent send_intent = new Intent(this, ProductActivity.class);
             send_intent.putExtra("PRODUCT_ID", product_name);
