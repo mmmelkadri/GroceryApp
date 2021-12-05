@@ -82,6 +82,10 @@ public class getInformation {
         ArrayList<ArrayList<String>> items = new ArrayList<>();
 
         DataSnapshot products = Reader.getInstance().readSnapshot(ownerKey, owner_ID, productKey);
+
+        if (products == null)
+            return new ArrayList<>();
+
         for (DataSnapshot product : products.getChildren()) {
             ArrayList<String> item = new ArrayList<>();
 
