@@ -3,6 +3,7 @@ package com.example.groceryapp;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import org.junit.Test;
@@ -11,7 +12,7 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 @RunWith(MockitoJUnitRunner.class)
-public class LoginTestAhsan {
+public class LoginOwnerPasswordTest {
     @Mock
     LoginActivity view;
 
@@ -37,8 +38,8 @@ public class LoginTestAhsan {
 
         LoginPresenter presenter = new LoginPresenter(model, view);
 
-        Exception exception = assertThrows(IllegalArgumentException.class, presenter::checkOwnerPassword);
-        assertEquals("Missing password, please complete all the required fields", exception.getMessage());
+        presenter.checkCustomerPassword();
+        verify(view).toastError("Missing password, please complete all the required fields");
     }
 
     @Test
@@ -49,7 +50,7 @@ public class LoginTestAhsan {
 
         LoginPresenter presenter = new LoginPresenter(model, view);
 
-        Exception exception = assertThrows(IllegalArgumentException.class, presenter::checkOwnerPassword);
-        assertEquals("Invalid Password", exception.getMessage());
+        presenter.checkCustomerPassword();
+        verify(view).toastError("Invalid Password");
     }
 }
