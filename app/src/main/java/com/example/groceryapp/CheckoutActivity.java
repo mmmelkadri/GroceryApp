@@ -30,13 +30,19 @@ public class CheckoutActivity extends AppCompatActivity implements Serializable 
     }
 
     public void checkout(View view) {
-        Order.getCart().checkoutOrder();
+        // if cart is not empty
+        if (Order.getCart().products_and_quantity.size() != 0) {
+            Order.getCart().checkoutOrder();
 
-        CharSequence msg = "Checked out!";
-        Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
+            CharSequence msg = "Checked out!";
+            Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
 
-        Log.d("Checkout: ", "Checked Out");
-        // return to store page
-        finish();
+            Log.d("Checkout: ", "Checked Out");
+            // return to store page
+            finish();
+        } else {
+            CharSequence msg = "No items in cart.";
+            Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
+        }
     }
 }
