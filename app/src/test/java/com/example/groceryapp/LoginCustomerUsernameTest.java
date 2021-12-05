@@ -38,7 +38,7 @@ public class LoginCustomerUsernameTest {
         // If username is valid.
 
         when(view.getUsername()).thenReturn("username");
-        when(model.customerExists("username")).thenReturn("username");
+        when(model.customerExists("username")).thenReturn(true);
 
         LoginPresenter presenter = new LoginPresenter(model, view);
 
