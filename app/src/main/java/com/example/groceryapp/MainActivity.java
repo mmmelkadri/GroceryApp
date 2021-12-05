@@ -44,4 +44,26 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+    @Override
+    protected void onResume(){
+    super.onResume();
+
+
+        setContentView(R.layout.activity_main);
+
+        Reader.getInstance();
+
+        // login delay
+        new Timer().schedule(new TimerTask(){
+            public void run() {
+                MainActivity.this.runOnUiThread(new Runnable() {
+                    public void run() {
+                        startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                    }
+                });
+
+            }
+        }, 2000);
+    }
+
 }
