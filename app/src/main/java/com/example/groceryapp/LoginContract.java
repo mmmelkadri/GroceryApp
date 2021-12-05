@@ -11,7 +11,7 @@ public interface LoginContract {
         interface View{
                 String getUsername();
                 String getPassword();
-
+                void toastError(String message);
         }
 
         interface Presenter{

@@ -36,31 +36,23 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     }
 
     public void Login_LoginAsOwner_Button(View view){
-        try {
-            if (presenter.checkOwnerUsername() && presenter.checkOwnerPassword()) {
-                    Intent intent = new Intent(this, PersonalStoreActivity.class)
-                            .putExtra("owner_Id", getUsername());
-                    startActivity(intent);
-                }
+        if (presenter.checkOwnerUsername() && presenter.checkOwnerPassword()) {
+            Intent intent = new Intent(this, PersonalStoreActivity.class)
+                    .putExtra("owner_Id", getUsername());
+            startActivity(intent);
         }
-        catch(Exception e){
-            Toast.makeText(LoginActivity.this, e.toString(), Toast.LENGTH_SHORT).show();
-        }
-
     }
 
-    public void Login_LoginAsCustomer_Button (View view){
+    public void Login_LoginAsCustomer_Button (View view) {
+        if (presenter.checkCustomerUsername() && presenter.checkCustomerPassword()) {
+            Intent intent = new Intent(this, AllStorePageActivity.class)
+                    .putExtra("cust_Id", getUsername());
+            startActivity(intent);
+        }
+    }
 
-        try {
-            if (presenter.checkCustomerUsername() && presenter.checkCustomerPassword()) {
-                Intent intent = new Intent(this, AllStorePageActivity.class)
-                        .putExtra("cust_Id", getUsername());
-                startActivity(intent);
-            }
-        }
-        catch(Exception e){
-            Toast.makeText(LoginActivity.this, e.toString(), Toast.LENGTH_SHORT).show();
-        }
+    public void toastError(String message) {
+        Toast.makeText(LoginActivity.this, message, Toast.LENGTH_SHORT).show();
     }
 
     @Override

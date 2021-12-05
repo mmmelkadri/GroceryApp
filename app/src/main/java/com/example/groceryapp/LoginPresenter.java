@@ -14,34 +14,30 @@ public class LoginPresenter implements LoginContract.Presenter{
     public boolean checkOwnerUsername() {
         String username = view.getUsername();
         if (username.equals("")) {
-            throw new IllegalArgumentException
-                    ("Missing username, please complete all the required fields");
+            view.toastError("Missing username, please complete all the required fields");
         }
-        if(model.ownerExists(username)){
+        else if (model.ownerExists(username)){
             return true;
         }
         else{
-            throw new IllegalArgumentException
-                    ("Invalid Username");
+            view.toastError("Invalid Username");
         }
-
+        return false;
     }
 
     @Override
     public boolean checkCustomerUsername() {
         String username = view.getUsername();
         if (username.equals("")) {
-            throw new IllegalArgumentException
-                    ("Missing username, please complete all the required fields");
+            view.toastError("Missing username, please complete all the required fields");
         }
-        if(model.customerExists(username)){
+        else if(model.customerExists(username)){
             return true;
         }
         else{
-            throw new IllegalArgumentException
-                    ("Invalid Username");
+            view.toastError("Invalid Username");
         }
-
+        return false;
     }
 
     @Override
@@ -49,17 +45,15 @@ public class LoginPresenter implements LoginContract.Presenter{
         String username = view.getUsername();
         String password = view.getPassword();
         if (password.equals("")) {
-            throw new IllegalArgumentException
-                    ("Missing password, please complete all the required fields");
+            view.toastError("Missing password, please complete all the required fields");
         }
-        if(model.fetch_owner_password(username).equals(password)){
+        else if(model.fetch_owner_password(username).equals(password)){
             return true;
         }
         else{
-            throw new IllegalArgumentException
-                    ("Invalid Password");
+            view.toastError("Invalid Password");
         }
-
+        return false;
     }
 
     @Override
@@ -67,17 +61,15 @@ public class LoginPresenter implements LoginContract.Presenter{
         String username = view.getUsername();
         String password = view.getPassword();
         if (password.equals("")) {
-            throw new IllegalArgumentException
-                    ("Missing password, please complete all the required fields");
+            view.toastError("Missing password, please complete all the required fields");
         }
-        if(model.fetch_customer_password(username).equals(password)){
+        else if(model.fetch_customer_password(username).equals(password)){
             return true;
         }
         else{
-            throw new IllegalArgumentException
-                    ("Invalid Password");
+            view.toastError("Invalid Password");
         }
-
+        return false;
     }
 
 }
