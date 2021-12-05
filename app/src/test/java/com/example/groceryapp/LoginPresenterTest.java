@@ -160,11 +160,10 @@ public class LoginPresenterTest {
     public void testCheckOwnerPasswordEmptyPassword() {
         when(view.getUsername()).thenReturn("Apol");
         when(view.getPassword()).thenReturn("");
-        when(model.fetch_owner_password("Apol")).thenReturn("Appletest");
 
         LoginPresenter presenter = new LoginPresenter(model, view);
 
-        presenter.checkCustomerPassword();
+        presenter.checkOwnerPassword();
         verify(view).toastError("Missing password, please complete all the required fields");
     }
 
@@ -176,7 +175,7 @@ public class LoginPresenterTest {
 
         LoginPresenter presenter = new LoginPresenter(model, view);
 
-        presenter.checkCustomerPassword();
+        presenter.checkOwnerPassword();
         verify(view).toastError("Invalid Password");
     }
 }
