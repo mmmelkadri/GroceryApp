@@ -15,8 +15,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/ic_login"
-        tools:layout_editor_absoluteY="140dp" />
+        app:layout_constraintTop_toBottomOf="@+id/Login_Heading"
+        app:srcCompat="@drawable/ic_login" />
 
     <EditText
         android:id="@+id/Login_Username_EditText"
@@ -110,7 +110,6 @@
         android:textSize="48sp"
         android:textStyle="bold"
         android:typeface="sans"
-        app:layout_constraintBottom_toTopOf="@+id/GroceryIcon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
