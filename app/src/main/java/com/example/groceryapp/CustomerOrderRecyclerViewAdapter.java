@@ -69,7 +69,7 @@ public class CustomerOrderRecyclerViewAdapter extends RecyclerView.Adapter<Custo
 
 
         viewHolder.storeName.setText(getInformation.getInstance().getStoreName(owner_id));
-        viewHolder.orderID.setText(order_id);
+        viewHolder.orderID.setText("#" + order_id);
 
         String completion_status = orders.get(index).get(1);
 
